@@ -13,8 +13,8 @@ var pool=new pg.Pool(config);
 class Logeo {
 
     static  LogIn(user,comtra,callback){
-        pool.conect((err,client,done)=>{
-         client.query("select * from usuarios correo_usu=? and comtra_usu=?",[user,comtra],function(err,data){
+        pool.connect((err,client,done)=>{
+         client.query("select * from usuarios correo_usu=$1 and comtra_usu=$2",[user,comtra],function(err,data){
             done();
            if(err){return callback(err,'')}
 
@@ -26,13 +26,14 @@ class Logeo {
     }
 
     static registrar(i,callback){
-    pool.conect((err,client,done)=>{
-        const sql=`insert into usuarios 
-        values(?,?,?,?)`;
+    pool.connect((err,client,done)=>{
+        var sql=`insert into usuarios 
+        values($1,$2,$3,$4,$5,$6)`;
         client.query(sql,[i.dni,i.nombre,i.apellidos,i.comtra,i.celular,i.correo],(err,data)=>{
-            done();
-            if(err){return callback(err,null);}
-            return callback(null,data.rows);
+             done();
+             if(err){console.log(err.error,err.detail);
+                return callback(err,null);}
+            return callback(null,data);
         });
     })
     }
