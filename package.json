@@ -1,0 +1,32 @@
+{
+  "name": "japanaja",
+  "version": "0.0.1",
+  "description": "web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/disruptia/japanaja.git"
+  },
+  "keywords": [
+    "web",
+    "cambio",
+    "tarjeta"
+  ],
+  "author": "disruptia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/disruptia/japanaja/issues"
+  },
+  "homepage": "https://gitlab.com/disruptia/japanaja#README",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
+    "pg": "^7.2.0",
+    "rotating-file-stream": "^1.2.2",
+    "swig": "^1.4.2"
+  }
+}

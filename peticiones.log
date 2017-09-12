@@ -1,0 +1,17 @@
+[0mGET /mov_bbb.mp4 [33m404 [0m9.413 ms - 150[0m
+[0mGET /mov_bbb.ogg [33m404 [0m1.293 ms - 150[0m
+[0mGET /Complementos/css/bootstrap.css.map [33m404 [0m0.855 ms - 173[0m
+[0mGET /mov_bbb.mp4 [33m404 [0m0.261 ms - 150[0m
+[0mGET /mov_bbb.ogg [33m404 [0m1.733 ms - 150[0m
+[0mGET /Complementos/css/bootstrap.css.map [33m404 [0m1.031 ms - 173[0m
+[0mGET /sadasd [33m404 [0m0.478 ms - 145[0m
+::1 - - [11/Sep/2017:23:08:05 +0000] "GET /sadasd HTTP/1.1" 404 145 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0"
+::1 - - [11/Sep/2017:23:10:03 +0000] "GET /sadasd HTTP/1.1" 404 145 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0"
+::1 - - [11/Sep/2017:23:10:08 +0000] "GET /mov_bbb.mp4 HTTP/1.1" 404 150 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0"
+::1 - - [11/Sep/2017:23:10:08 +0000] "GET /mov_bbb.ogg HTTP/1.1" 404 150 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0"
+::1 - - [11/Sep/2017:23:10:10 +0000] "GET /Complementos/css/bootstrap.css.map HTTP/1.1" 404 173 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0"
+[0mGET /mov_bbb.mp4 [33m404 [0m4.818 ms - 150[0m
+[0mGET /mov_bbb.ogg [33m404 [0m1.044 ms - 150[0m
+[0mGET /favicon.ico [33m404 [0m0.868 ms - 150[0m
+[0mGET /favicon.ico [33m404 [0m1.382 ms - 150[0m
+[0mGET /Complementos/css/bootstrap.css.map [33m404 [0m8.106 ms - 173[0m
