@@ -18,7 +18,7 @@ document.getElementsByName('enviar')[0].onclick=function(){
 		data:{data:JSON.stringify(data)},
 		success:function(data){
 			console.log(data);
-			data=JSON.parse(data);
+			
        if(data.err){
        	err().innerText=data.errores;
        	err().style.color='red';
@@ -31,6 +31,26 @@ document.getElementsByName('enviar')[0].onclick=function(){
 		}
 	})
 }
+document.getElementsByName('login')[0].addEventListener('click',function(){
+	var data={
+		"correo":document.getElementsByName("correolog")[0].value,
+		"password":document.getElementsByName("contralog")[0].value
+	}
+	$.ajax({
+		url:"/login",
+		type:"POST",
+		data:data,
+		success:function(e){
+			if(e.err){
+			document.getElementsByName('errIngreso')[0].innerText=e.msj;	
+			document.getElementsByName('errIngreso')[0].style.color='red';
+			return;
+			}
+
+			location.reload();
+		}
+	})
+})
 
 function nameObject(x){
 	return document.getElementsByName(x)[0].value;

@@ -15,7 +15,7 @@
     <meta name="robots" content="index,follow">
     <link rel="stylesheet" href="../Complementos/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/jpnj.css">
+    <link rel="stylesheet" href="../Complementos/css/jpnj.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -65,7 +65,7 @@
                         <li class="Logged">
                             <a href="#" class="usuario">
                                 <figure>
-                                    <img src="../Complementos/imagenes/avatars/avatar.png" alt="">
+                                    <img src="imagenes/avatars/avatar.png" alt="">
                                 </figure>
                             </a>
                         </li>
@@ -76,12 +76,137 @@
         <section class="main-internal-page">
             <div class="row nopad">
                 <div class="col-md-12 white-card">
-                    <h1>Título</h1>
-                    <h2>Subtítulo</h2>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?" </p>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?" </p>
-                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                    <header class="clearfix">
+                        <figure>
+                            <img src="imagenes/avatars/avatar.png" alt="">
+                        </figure>
+                        <div class="rating">
+                            <a class="good">1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
+                        </div>
+                        <h2>María</h2>
+                    </header>
+                    <div class="tabpages clearfix">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab">Tus propuestas</a></li>
+                            <li role="presentation"><a href="#opciones" aria-controls="opciones" role="tab" data-toggle="tab">Tus opciones</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="propuestas">
+                                <div class="tabpage">
+                                    <div class="tabtitle">
+                                        <h4>Tus propuestas activas</h4>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Marco está proponiendo recibir S/ 270 en efectivo en su cuenta de interbank, a cambio de pagar tu recibo de Enel de S/ 280.40</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <input type="button" value="Cancelar propuesta" class="red">
+                                            <p>Vence en 08:23:45</p>
+                                        </div>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Marco está proponiendo recibir S/ 270 en efectivo en su cuenta de interbank, a cambio de pagar tu recibo de Enel de S/ 280.40</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <input type="button" value="Cancelar propuesta" class="red">
+                                            <p>Vence en 08:23:45</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabpage closed">
+                                    <div class="tabtitle">
+                                        <h4>Tus propuestas cerradas</h4>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Ahorraste S/ 9.32 al publicar una opción de su recibo de Enel de S/ 98.20</p>
+                                            <p class="small">Cerró el 12 de julio a las 5:34pm</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <h2>María</h2>
+                                            <figure>
+                                                <img src="imagenes/avatars/avatar.png" alt="">
+                                            </figure>
+                                            <div class="rating">
+                                                <a class="good">1</a>
+                                                <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="opciones">
+                                <div class="tabpage">
+                                    <div class="tabtitle">
+                                        <h4>Tus opciones activas</h4>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Has publicado una opción de su recibo de Enel de S/ 92.20</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <input type="button" value="Cancelar propuesta" class="red">
+                                            <p>Vence en 08:23:45</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabpage closed">
+                                    <div class="tabtitle">
+                                        <h4>Tus opciones cerradas</h4>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Ahorraste S/ 9.32 al publicar una opción de su recibo de Enel de S/ 98.20</p>
+                                            <p class="small">Cerró el 12 de julio a las 5:34pm</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <h2>María</h2>
+                                            <figure>
+                                                <img src="imagenes/avatars/avatar.png" alt="">
+                                            </figure>
+                                            <div class="rating">
+                                                <a class="good">1</a>
+                                                <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Ahorraste S/ 12.30 al publicar una opción de su recibo de Enel de S/ 110.20</p>
+                                            <p class="small">Cerró el 5 de julio a las 5:34pm</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <h2>María</h2>
+                                            <figure>
+                                                <img src="imagenes/avatars/avatar.png" alt="">
+                                            </figure>
+                                            <div class="rating">
+                                                <a class="good">1</a>
+                                                <a class="good">2</a>
+                                                <a class="good">3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

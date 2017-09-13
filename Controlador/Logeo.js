@@ -6,10 +6,26 @@ static login(req,res){
 var user= req.body.correo;
 var comtra=req.body.password;
 
+console.log(req.body);
         BD.LogIn(user,comtra,function(err,data){
                 if(err){
                     return console.log(err);
+
                 }
+             if(data.length==0){
+             	console.log("usuario incorrecto");
+             	res.send({err:true,msj:"usuario o contraseña y incorrectos"});
+             	return;
+             }
+                req.session.ide=data[0].dni_usu;
+
+                req.session.nombre=data[0].nom_usu;
+                req.session.config={
+                	name:data[0].nom_usu,
+                	logeadoClass:"Logged",
+                	logeado:true
+                }
+                res.send({err:false});
         });
 
 }
@@ -54,14 +70,16 @@ static registrar(req,res){
      res.send(reporte);
      return;
     }
-    reporte.errores="Se ah Registrado correctamente";
+   
+    BD.registrar(cliente,(err,data)=>{
+
+    	if(err){console.log(err);return;}
+    	 reporte.errores="Se ah Registrado correctamente";
           reporte.err=false;
           
-          res.send(JSON.stringify(reporte));
-    // BD.registrar(cliente,(err,data)=>{
-    // 	if(err){console.log(err);return;}
+          res.send(reporte);
 
-    // })
+    })
 
 }
 

@@ -5,44 +5,110 @@ var app=express();
 var puerto=process.env.port||3000;
 var bodyParser=require("body-parser");
 var path=require('path');
-var swig= require('ejs');
+var ejs= require('ejs');
 var morgan = require('morgan');
-var rfs=require('rotating-file-stream');
+var cors=require('cors');
+// var rfs=require('rotating-file-stream');
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var Logeo=require('./Controlador/Logeo.js');
-
+var Secundarios=require('./Controlador/Secundarios.js');
+var passport = require("passport");
+var Strategy = require('passport-facebook').Strategy; 
+var connectionFB = require("./Modelo/FB.js");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 var logdireccion=__dirname;
-var tipearlog=rfs('peticiones.log',{
-    interval:'2d',
-    path:logdireccion
-})
+// // var tipearlog=rfs('peticiones.log',{
+//     interval:'2d',
+//     path:logdireccion
+// // })
+passport.use(new Strategy({
+    clientID: 809251815920265,
+    clientSecret: 'f603b1df391fa3bb696bfe134606bd0d',
+    callbackURL: 'http://localhost:3000/registrar/facebook/return'
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    return cb(null, profile);
+  }));
 app.use(morgan('dev'));
-;
+//notLogged -- Logged
 app.use(cookieParser());
+app.use(cors());
 app.use(session({secret:"disruptia",resave:true,saveUninitialized:true}));
-
-// app.engine('html',swig.renderFile)
-app.use('view engine','ejs');
+app.set('view engine','ejs');
 app.set('views',__dirname+"/public");
 app.use(express.static(path.join(__dirname,"public")));//especifica 
-app.get('/',function(req,res){
-res.sender('index',{name:"Andy Robers Javier Reyes"});
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
 });
-// app.route('/').get(function(req,res){
-// 		res.render('index.html'); })
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+var s = "http://graph.facebook.com/1394296637357195/picture";
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.get('/registrar/facebook',passport.authenticate('facebook'));
+app.get('/',function(req,res){
+
+	if(req.session.ide){
+	res.render('index',req.session.config);	
+	return;}
 
 
-// }app.post('/login',Logeo.login);
-// app.post('/register',Logeo.registrar);
+	var config={
+		name:"Inicio",
+		logeadoClass:"notLogged",
+		logeado:false
+	}
+
+	res.render('index',config);
+});
+app.get('/registrar/facebook/return', 
+   passport.authenticate('facebook', { failureRedirect: '/' }),
+   function(req, res) {
+
+      connectionFB.registrar(req.user._json,(user)=>{
+          // req.session.photo = user.foto_usu;
+          req.session.name = user.nom_usu;
+          req.session.ide = user.id_usu;  
+          req.session.config={
+                	name:user.nom_usu,
+                	logeadoClass:"Logged",
+                	logeado:true
+                }
+           res.redirect('/');   
+    });
+});
+
+app.post('/login',Logeo.login);
+app.post('/register',Logeo.registrar);
+
+app.get('/Nosotros',Secundarios.Nosotros)
+
+app.get('/login',(req,res)=>{
+
+	var config={
+		name:"Andy Robers Javier Reyes",
+		logeadoClass:"notLogged",
+		logeado:false
+	}
 
 
-// app.post('/signup',function(req,res){
-   
-// });
+	res.render('index',config);
+ })
+
+app.get('/signup',function(req,res){
+   req.session.destroy();
+	res.statusCode = 302;
+  res.setHeader('Location', '/' );
+  res.end();
+});
+
+
 app.listen(puerto,function(){
     console.log("el servidor se esta ejecutando");
 })

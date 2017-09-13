@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{{ name }}</title>
+    <title><%= name%></title>
     <meta name="title" content="Titulo de la página: entre 55 caracteres">
     <meta name="description" content="La descripción: entre 155 caracteres">
     <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
@@ -23,7 +23,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="notLogged home main">
+
+  <body class="<%= logeadoClass %> home main">
   	<!--[if lt IE 8]>
     	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -43,12 +44,25 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
+
+
+
+                    <!-- para loger -->
                     <ul class="nav navbar-nav navbar-right">
+
+                       <%# aqui para los no logear%>
+                       <% if(logeado==false){%>
                         <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
                         <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro">regístrate</a></li>
+
+                           <% } else {%>
+
+                        <%# aqui para logear%>
+
+                        
                         <li class="dropdown Logged">
                             <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
                                 <span class="sinleer">88</span>
@@ -58,7 +72,7 @@
                                 <li><a href="#">Mis opciones</a></li>
                                 <li><a href="#">Configuración</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <li><a href="/signup">Cerrar sesión</a></li>
                             </ul>
                         </li>
                         <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
@@ -69,7 +83,18 @@
                                 </figure>
                             </a>
                         </li>
+                         <% }%>
+
+
                     </ul>
+
+
+
+
+
+
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -293,13 +318,15 @@
       </div>
       <div class="modal-body center">
         <form action="">
-        <input type="button" class="faceBtn" value="Continuar con facebook">
+        <a href="/registrar/facebook"><input type="button" class="faceBtn" value="Continuar con facebook"></a>
         <fieldset>
             <legend>o utiliza tu correo para iniciar sesión</legend>
-            <input type="text" placeholder="Correo">
-            <input type="password" placeholder="Contraseña">
+            <input type="text"  name="correolog" placeholder="Correo">
+            <input type="password" name="contralog"  placeholder="Contraseña">
             <p>olidaste tu contraseña, <a href="">haz clic aquí</a></p>
-            <input type="button" value="Iniciar Sesión">
+            <span name="errIngreso"></span><br>
+
+            <input type="button" name="login" value="Iniciar Sesión">
         </fieldset>
         </form>
         </div>
@@ -319,7 +346,9 @@
       </div>
       <div class="modal-body center">
         <form action="">
-        <input type="button" class="faceBtn" value="Continuar con facebook">
+        <a href="/registrar/facebook">
+            <input type="button" class="faceBtn" value="Continuar con facebook">
+        </a>
         <fieldset>
             <legend>regístrate</legend>
             <input type="text"  name="correo" placeholder="Correo">
