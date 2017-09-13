@@ -14,7 +14,7 @@ console.log(req.body);
                 }
              if(data.length==0){
              	console.log("usuario incorrecto");
-             	res.send({err:true,msj:"usuario o contraseña y incorrectos"});
+             	res.send({err:true,msj:"Usuario o contraseña incorrectos En caso no cuentes con un usuario puede registrarte en este <a  data-toggle='modal' data-target='#ModalRegistro' data-dismiss='modal'>Link</a>"});
              	return;
              }
                 req.session.ide=data[0].dni_usu;
@@ -23,7 +23,8 @@ console.log(req.body);
                 req.session.config={
                 	name:data[0].nom_usu,
                 	logeadoClass:"Logged",
-                	logeado:true
+                	logeado:true,
+                    perfil:"Complementos/imagenes/avatars/perfil.jpg"
                 }
                 res.send({err:false});
         });
@@ -33,10 +34,10 @@ console.log(req.body);
 static registrar(req,res){
     var cliente=JSON.parse(req.body.data);
     var correo=/^\S+\@\w+\.\w+$/;//correo
-    var nombre=/^[a-zA-Z ]{5,110}$/;
+    var nombre=/^[a-zA-Z ]{1,110}$/;
     var dni=/^[0-9]{8}$/;
     var celular=/^[0-9]{9}$/;
-    const comtra=/^\S{8,100}$/;
+    const comtra=/^[]\S{8,100}$/;
     var reporte={
     	err:true
     };

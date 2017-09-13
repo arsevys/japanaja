@@ -27,7 +27,7 @@ var logdireccion=__dirname;
 passport.use(new Strategy({
     clientID: 809251815920265,
     clientSecret: 'f603b1df391fa3bb696bfe134606bd0d',
-    callbackURL: 'http://localhost:3000/registrar/facebook/return'
+    callbackURL: 'https://9972ef16.ngrok.io/registrar/facebook/return'
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
@@ -47,6 +47,8 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
+
+
 var s = "http://graph.facebook.com/1394296637357195/picture";
 
 app.use(passport.initialize());
@@ -62,7 +64,8 @@ app.get('/',function(req,res){
 	var config={
 		name:"Inicio",
 		logeadoClass:"notLogged",
-		logeado:false
+		logeado:false,
+    perfil:"Complementos/imagenes/avatars/perfil.jpg"
 	}
 
 	res.render('index',config);
@@ -74,11 +77,13 @@ app.get('/registrar/facebook/return',
       connectionFB.registrar(req.user._json,(user)=>{
           // req.session.photo = user.foto_usu;
           req.session.name = user.nom_usu;
-          req.session.ide = user.id_usu;  
+          req.session.ide = user.id_usu;
+
           req.session.config={
                 	name:user.nom_usu,
                 	logeadoClass:"Logged",
-                	logeado:true
+                	logeado:true,
+                  perfil:user.foto_usu
                 }
            res.redirect('/');   
     });

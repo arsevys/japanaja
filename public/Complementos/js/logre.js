@@ -42,7 +42,7 @@ document.getElementsByName('login')[0].addEventListener('click',function(){
 		data:data,
 		success:function(e){
 			if(e.err){
-			document.getElementsByName('errIngreso')[0].innerText=e.msj;	
+			document.getElementsByName('errIngreso')[0].innerHTML=e.msj;	
 			document.getElementsByName('errIngreso')[0].style.color='red';
 			return;
 			}
@@ -59,3 +59,5 @@ function nameObject(x){
 function err(){
 	return document.getElementsByClassName('aviso').item(0);
 }
+
+document.getElementsByName('errIngreso')[0].innerText="";
