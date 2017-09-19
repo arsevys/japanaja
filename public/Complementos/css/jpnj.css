@@ -1529,7 +1529,7 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .main-internal-page .nopad .white-card .tabpages .tabmodule{
   margin: 15px 0;
   padding: 35px;
-  background-color: #E9EAEA;
+  background-color: ##E9EAEA;
   border:1px solid #E9EAEA;
   border-radius: 5px;
   font-size: 20px;
@@ -1720,9 +1720,18 @@ body.Logged .modal .modal-dialog .modal-content{
   border:0;
 }
 
+.modal .modal-dialog .modal-content .modal-header.small{
+  padding: 28px 20px 0px 20px;
+}
+
 .modal .modal-dialog .modal-content .modal-header h4{
   color: #1263bf;
   font-size: 26px;
+}
+
+.modal .modal-dialog .modal-content .modal-header h4.small{
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .modal .modal-dialog .modal-content .modal-header .close{
@@ -1795,6 +1804,101 @@ body.Logged .modal .modal-dialog .modal-content{
   width: 360px;
 }
 
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad{
+  width:420px;
+  margin: 0 auto;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad h2{
+  font-size: 14px;
+  min-height: 30px;
+  color: #1263bf;
+  font-weight: 700;
+  padding: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad p{
+  font-size: 26px;
+  margin-top: 35px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad p.small{
+  font-size: 18px;
+  margin-top: 39px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad p.verde{
+  color: #4eb92b;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad p .decimales{
+  font-size: 16px;
+  position: absolute;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad figure{
+  margin: 1em 13px;
+  border: 6px solid #1263bf;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 84px;
+  width: 84px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .white-card .nopad figure img{
+  margin: -6px;
+  height: 84px;
+  width: 84px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .tu-propuesta{
+  width:420px;
+  border-radius: 19px;
+  border: 3px solid #1263bf;
+  padding:12px 10px 14px 10px;
+  margin: 20px auto;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .tu-propuesta label{
+  color: #1263bf;
+  line-height: 1;
+  height:24px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .tu-propuesta select{
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border:1px solid #8E8E8E;
+  padding:5px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .tu-propuesta input[type="text"]{
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  border:1px solid #8E8E8E;
+  color: #4eb92b;
+  font-size: 26px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form .tu-propuesta input[type="text"]:placeholder{
+  color: #4eb92b;
+}
+
+.modal .modal-dialog .modal-content .modal-body form input[type="button"]{
+  background: #1263bf;
+  color:#fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 21px;
+  padding: 5px 15px;
+  height: 50px;
+}
+
 .modal .modal-dialog .modal-content.small .modal-header h4{
   font-size: 20px;
 }
@@ -1859,6 +1963,20 @@ body.Logged .modal .modal-dialog .modal-content{
   text-align: center;
   padding: 5px 25px 30px 25px;
   border: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-footer.gris{
+  font-size: 16px;
+  color: #1263bf;
+  width: 469px;
+  margin: 20px auto 0 auto;
+  background:#E4E5E9;
+  width: 100%;
+  border-radius:0px 0px 18px 18px;
+}
+
+.modal .modal-dialog .modal-content .modal-footer.gris p{
+  font-size: 14px;
 }
 
 @media (min-width: 300px) and (max-width: 767px){
@@ -2275,10 +2393,6 @@ body.Logged .modal .modal-dialog .modal-content{
 
   .interfaz .mainHero .info .copy h2{
     font-size: 30px;
-  }
-
-  .interfaz .mainHero .info .copy h2:after{
-    right: -100px;
   }
 
   .interfaz .mainHero .info .copy p{

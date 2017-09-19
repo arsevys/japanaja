@@ -13,6 +13,7 @@ var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var Logeo=require('./Controlador/Logeo.js');
 var Secundarios=require('./Controlador/Secundarios.js');
+var Primario=require('./Controlador/Primario.js');
 var passport = require("passport");
 var Strategy = require('passport-facebook').Strategy; 
 var connectionFB = require("./Modelo/FB.js");
@@ -27,11 +28,13 @@ var logdireccion=__dirname;
 passport.use(new Strategy({
     clientID: 809251815920265,
     clientSecret: 'f603b1df391fa3bb696bfe134606bd0d',
-    callbackURL: 'https://9972ef16.ngrok.io/registrar/facebook/return'
+    callbackURL: 'http://localhost:3000/registrar/facebook/return'
   },
-  function(accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
-  }));
+}));
+
+
 app.use(morgan('dev'));
 //notLogged -- Logged
 app.use(cookieParser());
@@ -53,6 +56,8 @@ var s = "http://graph.facebook.com/1394296637357195/picture";
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Peticiones GET
 app.get('/registrar/facebook',passport.authenticate('facebook'));
 app.get('/',function(req,res){
 
@@ -88,12 +93,12 @@ app.get('/registrar/facebook/return',
            res.redirect('/');   
     });
 });
+app.get('/Nosotros',Secundarios.Nosotros);
+app.get('/MisPropuestas',Primario.MisPropuestas);
+app.get('/QuieroAhorrar',Primario.PublicarAhorro);
 
-app.post('/login',Logeo.login);
-app.post('/register',Logeo.registrar);
-
-app.get('/Nosotros',Secundarios.Nosotros)
-
+app.get('/QuieroEfectivo',Primario.ElegirAhorro);
+app.get('/signup',Primario.CerrarSession);
 app.get('/login',(req,res)=>{
 
 	var config={
@@ -101,17 +106,15 @@ app.get('/login',(req,res)=>{
 		logeadoClass:"notLogged",
 		logeado:false
 	}
-
-
 	res.render('index',config);
  })
 
-app.get('/signup',function(req,res){
-   req.session.destroy();
-	res.statusCode = 302;
-  res.setHeader('Location', '/' );
-  res.end();
-});
+
+//Peticiones POST
+
+app.post('/login',Logeo.login);
+app.post('/register',Logeo.registrar);
+
 
 
 app.listen(puerto,function(){

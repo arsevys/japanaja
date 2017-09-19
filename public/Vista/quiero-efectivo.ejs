@@ -65,7 +65,7 @@
                         <li class="Logged">
                             <a href="#" class="usuario">
                                 <figure>
-                                    <img src="../Complementos/imagenes/avatars/avatar.png" alt="">
+                                    <img src="imagenes/avatars/avatar.png" alt="">
                                 </figure>
                             </a>
                         </li>
@@ -86,7 +86,7 @@
                                 <input type="radio" name="banco"><label for="">SI</label>
                                 <input type="radio" name="banco"><label for="">NO</label>
                             </p>
-                            <input type="button" class="col-sm-8" value="Buscar opciones">
+                            <input type="button" class="col-sm-8" value="Buscar opciones" data-toggle="modal" data-target="#ModalOpcion">
                         </div>
                     </fieldset>
                 </form>
@@ -117,7 +117,7 @@
                         <div class="col-sm-4">
                             <h2>María</h2>
                             <figure>
-                                <img src="../Complementos/imagenes/avatars/avatar.png" alt="">
+                                <img src="imagenes/avatars/avatar.png" alt="">
                             </figure>
                             <div class="rating">
                                 <a class="good">1</a>
@@ -163,7 +163,7 @@
                         <div class="col-sm-4">
                             <h2>María</h2>
                             <figure>
-                                <img src="../Complementos/imagenes/avatars/avatar.png" alt="">
+                                <img src="imagenes/avatars/avatar.png" alt="">
                             </figure>
                             <div class="rating">
                                 <a class="good">1</a>
@@ -268,6 +268,67 @@
         <div class="modal-footer">
             <p>¿Ya tienes cuenta? <a href="" data-toggle="modal" data-target="#ModalInicioSesion" data-dismiss="modal">Inicia sesión</a></p>
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalOpcion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header small">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title small" id="myModalLabel">Información de la opción</h4>
+      </div>
+      <div class="modal-body center">
+        <form action="">
+            <div class="white-card">
+                <div class="row nopad">
+                    <div class="col-sm-4">
+                        <figure>
+                            <img src="imagenes/avatars/avatar.png" alt="">
+                        </figure>
+                        <div class="rating">
+                            <a class="good">1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                       <h2>Para pagar con tarjeta de crédito</h2>
+                       <p class="monto verde">S/ 280 <span class="decimales">.80</span></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h2>Vencimiento</h2>
+                        <p class="small">en 08:23:45</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tu-propuesta row-fluid clearfix">
+                <div class="col-sm-5">
+                    <label for="">Tu propuesta</label>
+                    <input type="text" placeholder="S/ 280">
+                </div>
+                <div class="col-sm-7">
+                    <label for="">Elige una cuenta para el depósito</label>
+                    <select name="" id="">
+                        <option value="">cta - cte - interbank 1452 1452 1459</option>
+                        <option value="">cta - cte - interbank 7897 7897 7891</option>
+                    </select>
+                </div>
+            </div>
+            <input type="button" value="Lanza tu propuesta">
+        </form>
+        </div>
+        <div class="modal-footer gris">
+            <p><strong>¿Qué sigue luego?</strong></p>
+            <p>Tu propuesta competirá con otras y sólo una será elegida. En caso tu propuesta sea elegida deberás realizar lo siguiente:</p>
+            <div class="row-fluid">
+                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Pagar con tu tarjeta</strong></p></div>
+                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Confirmar el pago</strong></p></div>
+                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Recibir tu efectivo</strong></p></div>
+            </div>
+        </div>
     </div>
   </div>
 </div>
