@@ -17,7 +17,7 @@ console.log(req.body);
              	res.send({err:true,msj:"Usuario o contraseña incorrectos En caso no cuentes con un usuario puede registrarte en este <a  data-toggle='modal' data-target='#ModalRegistro' data-dismiss='modal'>Link</a>"});
              	return;
              }
-                req.session.ide=data[0].id_usu;
+                req.session.ide=data[0].dni_usu;
 
                 req.session.nombre=data[0].nom_usu;
                 req.session.config={
@@ -37,7 +37,7 @@ static registrar(req,res){
     var nombre=/^[a-zA-Z ]{1,110}$/;
     var dni=/^[0-9]{8}$/;
     var celular=/^[0-9]{9}$/;
-    const comtra=/^[A-Z]\S{7,100}$/;
+    const comtra=/^[]\S{8,100}$/;
     var reporte={
     	err:true
     };
@@ -67,16 +67,10 @@ static registrar(req,res){
      return;
     }
     else if(!comtra.test(cliente.comtra)){
-    	reporte.errores="Su comtraseña debe tener de 8 a mas caracteres y debe empezar con una letra mayuscula";
+    	reporte.errores="Su comtraseña debe tener de 8 a mas caracteres";
      res.send(reporte);
      return;
     }
-    else if(validarnum(cliente.comtra)){
-     reporte.errores="Su comtraseña debe tener por lo menos un numero";
-     res.send(reporte);  
-     return; 
-    }
-
    
     BD.registrar(cliente,(err,data)=>{
 
@@ -93,18 +87,4 @@ static registrar(req,res){
 
 }
 
-function validarnum(comtra){
-    const n=[0,1,2,4,5,6,7,8,9];
- console.log(comtra);
-for(let i =0 ; n.length>i;i++){
-   if(comtra.indexOf(n[i])!=-1){
-      return false
-       break;
-   }
-   else if (n.length-1==i){
-      return true;
-   }
-    
-    }
-}
 module.exports=Logeo;

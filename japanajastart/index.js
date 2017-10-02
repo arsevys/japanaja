@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 var express=require('express');
 var app=express();
 var puerto=process.env.port||3000;
@@ -7,8 +7,7 @@ var bodyParser=require("body-parser");
 var path=require('path');
 var ejs= require('ejs');
 var morgan = require('morgan');
-var cors=require('cors');
-// var rfs=require('rotating-file-stream');
+
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var Logeo=require('./Controlador/Logeo.js');
@@ -17,7 +16,6 @@ var Primario=require('./Controlador/Primario.js');
 var passport = require("passport");
 var Strategy = require('passport-facebook').Strategy; 
 var connectionFB = require("./Modelo/FB.js");
-var Operaciones=require('./Controlador/Operaciones');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
@@ -36,10 +34,9 @@ passport.use(new Strategy({
 }));
 
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 //notLogged -- Logged
 app.use(cookieParser());
-app.use(cors());
 app.use(session({secret:"disruptia",resave:true,saveUninitialized:true}));
 app.set('view engine','ejs');
 app.set('views',__dirname+"/public");
@@ -60,15 +57,20 @@ app.use(passport.session());
 
 //Peticiones GET
 app.get('/registrar/facebook',passport.authenticate('facebook'));
+
+
+
 app.get('/',function(req,res){
+
+  req.session.url = "/";
 
 	if(req.session.ide){
 	res.render('index',req.session.config);	
- 
-	return;}
+	return;
+  }
 
 
-	const config={
+	var config={
 		name:"Inicio",
 		logeadoClass:"notLogged",
 		logeado:false,
@@ -76,15 +78,15 @@ app.get('/',function(req,res){
 	}
 
 	res.render('index',config);
-  res.end();
+
 });
+
 app.get('/registrar/facebook/return', 
    passport.authenticate('facebook', { failureRedirect: '/' }),
    function(req, res) {
-
+      
       connectionFB.registrar(req.user._json,(user)=>{
           // req.session.photo = user.foto_usu;
-          console.log(user)
           req.session.name = user.nom_usu;
           req.session.ide = user.id_usu;
 
@@ -94,16 +96,22 @@ app.get('/registrar/facebook/return',
                 	logeado:true,
                   perfil:user.foto_usu
                 }
-
-
-           res.redirect('/');   
+           res.redirect( req.session.url );   
     });
 });
+
+app.get('/masopciones',Secundarios.MasOpciones);
+
 app.get('/Nosotros',Secundarios.Nosotros);
+
 app.get('/MisPropuestas',Primario.MisPropuestas);
+
 app.get('/QuieroAhorrar',Primario.PublicarAhorro);
+
 app.get('/QuieroEfectivo',Primario.ElegirAhorro);
+
 app.get('/signup',Primario.CerrarSession);
+
 app.get('/login',(req,res)=>{
 
 	var config={
@@ -114,13 +122,16 @@ app.get('/login',(req,res)=>{
 	res.render('index',config);
  })
 
+app.get('/propuesta',Primario.lanzarOpcion);
 
+app.get('/filtros',Primario.filtro);
+
+app.get('/registrarPropuesta',Secundarios.guardarpropuesta);
 
 //Peticiones POST
 
 app.post('/login',Logeo.login);
 app.post('/register',Logeo.registrar);
-app.post('/PublicarAhorro',Operaciones.PublicarOpcion)
 
 
 

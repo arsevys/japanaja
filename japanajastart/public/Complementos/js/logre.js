@@ -32,34 +32,7 @@ document.getElementsByName('enviar')[0].onclick=function(){
 	})
 }
 document.getElementsByName('login')[0].addEventListener('click',function(){
-	logear();
-})
-
-function nameObject(x){
-	return document.getElementsByName(x)[0].value;
-}
-
-function err(){
-	return document.getElementsByClassName('aviso').item(0);
-}
-
-document.getElementsByName('errIngreso')[0].innerText="";
-
-
-function limpiarRegistrar(){
-document.getElementById("frmRegistrar").reset();
-}
-
-function enter(env){
-console.log(env);
-	if(env.key == "Enter"){
-  logear();
-	}
-
-}
-
-function logear(){
-var data={
+	var data={
 		"correo":document.getElementsByName("correolog")[0].value,
 		"password":document.getElementsByName("contralog")[0].value
 	}
@@ -77,4 +50,14 @@ var data={
 			location.reload();
 		}
 	})
+})
+
+function nameObject(x){
+	return document.getElementsByName(x)[0].value;
 }
+
+function err(){
+	return document.getElementsByClassName('aviso').item(0);
+}
+
+document.getElementsByName('errIngreso')[0].innerText="";

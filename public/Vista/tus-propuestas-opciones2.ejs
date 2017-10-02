@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="../Complementos/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="../Complementos/css/jpnj.css">
-
-   
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,24 +62,13 @@
                             </ul>
                         </li>
                         <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                        <li class="Logged dropdown">
-                                    
-                                     <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <figure>
-                                            <img src="<%= perfil %>" alt="">
-                                        </figure>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
-                                            <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
-                                            <li><a href="/MisPropuestas">Mis propuestas</a></li>
-                                            <li><a href="#">Mis opciones</a></li>
-                                            <li><a href="#">Configuración</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="/signup">Cerrar sesión</a></li>
-                                        </ul>
-
-                        </li><!--termina elde perf -->
+                        <li class="Logged">
+                            <a href="#" class="usuario">
+                                <figure>
+                                    <img src="imagenes/avatars/avatar.png" alt="">
+                                </figure>
+                            </a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -91,7 +78,7 @@
                 <div class="col-md-12 white-card">
                     <header class="clearfix">
                         <figure>
-                            <img src="<%= perfil%>" width="150" height="150" alt="">
+                            <img src="imagenes/avatars/avatar.png" alt="">
                         </figure>
                         <div class="rating">
                             <a class="good">1</a>
@@ -100,7 +87,7 @@
                             <a>4</a>
                             <a>5</a>
                         </div>
-                        <h2><%= name%></h2>
+                        <h2>María</h2>
                     </header>
                     <div class="tabpages clearfix">
                         <!-- Nav tabs -->
@@ -115,18 +102,15 @@
                                     <div class="tabtitle">
                                         <h4>Tus propuestas activas</h4>
                                     </div>
-                                    <% for(var i=0;PropuestasActivas.length>i;i++){%>
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Estás proponiendo recibir S/ <%= PropuestasActivas[i].mont_propu %> en efectivo en tu cuenta de <%= PropuestasActivas[i].nom_banco %>, a cambio de pagar un recibo de <%= PropuestasActivas[i].nom_tipo %> de S/ <%= PropuestasActivas[i].mont_opc %></p>
+                                            <p>Marco está proponiendo recibir S/ 270 en efectivo en su cuenta de interbank, a cambio de pagar tu recibo de Enel de S/ 280.40</p>
                                         </div>
                                         <div class="col col-md-3 acciones">
                                             <input type="button" value="Cancelar propuesta" class="red">
-                                            <p>Vence en <span class="horaDescuento" data-HT="<%= PropuestasActivas[i].hora %>"><%= PropuestasActivas[i].hora %></span></p>
+                                            <p>Vence en 08:23:45</p>
                                         </div>
                                     </div>
-                                    <% }%>
-
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
                                             <p>Marco está proponiendo recibir S/ 270 en efectivo en su cuenta de interbank, a cambio de pagar tu recibo de Enel de S/ 280.40</p>
@@ -141,24 +125,15 @@
                                     <div class="tabtitle">
                                         <h4>Tus propuestas cerradas</h4>
                                     </div>
-                                    <% if(PropuestasRealisadas.length<=0){%>
-                                       <br><br>
-                                      <center>No tienes ninguna Propuesta Cerrada</center>
-                                      <br><br>
-                                    <% } %>
-
-                                    <%for(var i=0;PropuestasRealisadas.length>i;i++){%>
-
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Ahorraste S/ <%= PropuestasRealisadas[i].ahorrado %> al publicar una opción de su recibo de <%= PropuestasRealisadas[i].nom_tipo %> de S/ <%= PropuestasRealisadas[i].mont_opc %></p>
-                                            
-                                            <p class="small"><span class="fechaOA" data-fechaoa="<%=PropuestasRealisadas[i].fecha_trans%>">Cerró el 12 de julio a las 5:34pm</span></p>
+                                            <p>Ahorraste S/ 9.32 al publicar una opción de su recibo de Enel de S/ 98.20</p>
+                                            <p class="small">Cerró el 12 de julio a las 5:34pm</p>
                                         </div>
                                         <div class="col col-md-3 acciones">
-                                            <h2><%= PropuestasRealisadas[i].nom_usu %></h2>
+                                            <h2>María</h2>
                                             <figure>
-                                                <img src="<%= PropuestasRealisadas[i].foto_usu %>" alt="">
+                                                <img src="imagenes/avatars/avatar.png" alt="">
                                             </figure>
                                             <div class="rating">
                                                 <a class="good">1</a>
@@ -169,9 +144,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% } %>
-
-
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="opciones">
@@ -179,12 +151,8 @@
                                     <div class="tabtitle">
                                         <h4>Tus opciones activas</h4>
                                     </div>
-                                    <% if(OpcionesActivas.length<=0){%>
-                                       <br><br>
-                                      <center>No tienes ninguna opcion</center>
-                                      <br><br>
-                                    <% } %>
-
+                                    <div class="tabmodule row-fluid clearfix">
+                                      
                                         <%for(var i=0;OpcionesActivas.length>i;i++){%>
                                          <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
@@ -197,35 +165,22 @@
                                         </div>
                                            </div>
                                          <% }%>
-
                                         
-                                 
-
-
-
-
-                                    
+                                    </div>
                                 </div>
                                 <div class="tabpage closed">
                                     <div class="tabtitle">
                                         <h4>Tus opciones cerradas</h4>
                                     </div>
-                                     <% if(OpcionesCompletadas.length<=0){%>
-                                       <br><br>
-                                      <center>No tienes ninguna Opcion Cerrada</center>
-                                      <br><br>
-                                    <% } %>
-
-                                <% for(var i=0;OpcionesCompletadas.length>i;i++){%>
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Ahorraste S/ <%=OpcionesCompletadas[i].ganancia%> al publicar una opción de tu recibo de <%=OpcionesCompletadas[i].nom_tipo%> de S/ <%=OpcionesCompletadas[i].mont_opc%></p>
-                                            <p class="small"><span class="fechaOA" data-fechaoa="<%=OpcionesCompletadas[i].fecha_trans%>">Cerró el 12 de julio a las 5:34pm</span></p>
+                                            <p>Ahorraste S/ 9.32 al publicar una opción de su recibo de Enel de S/ 98.20</p>
+                                            <p class="small">Cerró el 12 de julio a las 5:34pm</p>
                                         </div>
                                         <div class="col col-md-3 acciones">
-                                            <h2><%=OpcionesCompletadas[i].nom_usu%></h2>
+                                            <h2>María</h2>
                                             <figure>
-                                                <img src="../Complementos/imagenes/avatars/perfil.jpg" alt="">
+                                                <img src="imagenes/avatars/avatar.png" alt="">
                                             </figure>
                                             <div class="rating">
                                                 <a class="good">1</a>
@@ -236,8 +191,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% } %>
-
+                                    <div class="tabmodule row-fluid clearfix">
+                                        <div class="col col-md-9">
+                                            <p>Ahorraste S/ 12.30 al publicar una opción de su recibo de Enel de S/ 110.20</p>
+                                            <p class="small">Cerró el 5 de julio a las 5:34pm</p>
+                                        </div>
+                                        <div class="col col-md-3 acciones">
+                                            <h2>María</h2>
+                                            <figure>
+                                                <img src="imagenes/avatars/avatar.png" alt="">
+                                            </figure>
+                                            <div class="rating">
+                                                <a class="good">1</a>
+                                                <a class="good">2</a>
+                                                <a class="good">3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +217,6 @@
                 </div>
             </div>
         </section>
-
         <section class="main-internal-footer">
             <ul class="sociales">
                 <li><a href="#" class="face">Facebook</a></li>
@@ -253,7 +224,6 @@
                 <li><a href="#" class="twitter">Twitter</a></li>
             </ul>
         </section>
-
     </div>
     <footer class="container pie">
         <section>
@@ -346,9 +316,5 @@
                 myVideo.pause(); 
         } 
     </script>
-     <script type="text/javascript" src="../Complementos/js/moment.js"></script>
-    <script type="text/javascript" src="../Complementos/js/es.js"></script>
-
-    <script type="text/javascript" src="../Complementos/js/count.js"></script>
   </body>
 </html>

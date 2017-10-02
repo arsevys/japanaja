@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="moment.js"></script>
+	<script type="text/javascript" src="es.js"></script>
+
+</head>
+<body>
+
+	<script type="text/javascript">
+		// moment().locale("es");
+  var m = moment().format("LLL")
+  // console.log(m);
+  //   moment.locale('es', {
+  //   relativeTime: {
+  //     future: 'en %s',
+  //     past: '%s años',
+  //     s:  'segundos',
+  //     ss: '%ss',
+  //     m:  'un minuto',
+  //     mm: '%dm',
+  //     h:  'en una hora',
+  //     hh: '%dh',
+  //     d:  'un dia',
+  //     dd: '%dd',
+  //     M:  'un mes',
+  //     MM: '%dM',
+  //     y:  'un año',
+  //     yy: '%dY'
+  //   }
+  // });
+		console.log(moment("2017-10-17 23:55:05",'YYYY-MM-DD HH:mm:ss A').format('DD  MMMM  YYYY hh:mm:ss A'));//martes 2017 octubre  11:55:05 PM
+         const fecha="2017-10-17 23:55:05";
+		//let hora =moment(fecha,'YYYY-MM-DD HH:mm:ss A').format('hh:mm:ss A');
+		let dia=moment(fecha,'YYYY-MM-DD HH:mm:ss A').format('DD');;
+		let mes=moment(fecha).format('MMMM');;
+		let año=moment(fecha,'YYYY-MM-DD HH:mm:ss A').format('YYYY');;
+		let horas=moment(fecha,'YYYY-MM-DD HH:mm:ss A').format('hh:mm:ss A');;
+		console.log(`EL ${dia} de ${mes} a las ${horas} del ${año}`);
+		console.log(moment([2017,07,27,5,20]).fromNow("mm"));
+		console.log(moment(new Date()).format("DD/MM/YYYY"));
+	</script>
+	
+</body>
+</html>
