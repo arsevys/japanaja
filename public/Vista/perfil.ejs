@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><%= name %></title>
+    <title>Título</title>
     <meta name="title" content="Titulo de la página: entre 55 caracteres">
     <meta name="description" content="La descripción: entre 155 caracteres">
     <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
@@ -23,7 +23,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="<%= logeadoClass%> internal sec">
+  <body class="Logged internal sec">
   	<!--[if lt IE 8]>
     	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -43,7 +43,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="">Quiero efectivo</a></li>
+                        <li><a href="">Quiero ahorrar</a></li>
+                        <li class="active"><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -62,107 +64,97 @@
                             </ul>
                         </li>
                         <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                        <li class="Logged dropdown">
-                                    
-                                     <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <figure>
-                                            <img src="<%= perfil %>" alt="">
-                                        </figure>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
-                                            <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
-                                            <li><a href="/MisPropuestas">Mis propuestas</a></li>
-                                            <li><a href="#">Mis opciones</a></li>
-                                            <li><a href="#">Configuración</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="/signup">Cerrar sesión</a></li>
-                                        </ul>
-
-                        </li><!--termina elde perf -->
+                        <li class="Logged">
+                            <a href="#" class="usuario">
+                                <figure>
+                                    <img src="imagenes/avatars/avatar.png" alt="">
+                                </figure>
+                            </a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <section class="row mainHero">
-            <div class="col-sm-7 form verde">
-                <div class="formato">
-                    <fieldset>
-                        <h1>Quiero ahorrar</h1>
-                        <h2>¿Que servicio quieres pagar?</h2>
-                        <div class="buscador row">
-                            <select name="" id="" class="col-sm-12">
-                                <% for(var i=0;tipos.length>i;i++){%>
-                                <option value="<%= tipos[i].id_tipo %>"><%= tipos[i].tipo_tipo %> - <%= tipos[i].nom_tipo %></option>
-                                <% }%>
-                            </select>
-                            <p class="infor col-sm-4">Máximo 600 soles</p>
-                            <input onclick="limpiar()" type="button" class="col-sm-8" value="Quiero ahorrar en el pago" data-toggle="modal" data-target="#ModalPublicar">
+        <section class="main-internal-page">
+            <div class="row nopad">
+                <div class="col-md-12 white-card">
+                    <header class="clearfix">
+                        <figure>
+                            <img src="imagenes/avatars/avatar.png" alt="">
+                        </figure>
+                        <div class="rating">
+                            <a class="good">1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
                         </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-sm-5 info">
-                <ul class="sociales pull-right">
-                    <li class="facebook"><a href="#" class="face">Facebook</a></li>
-                    <li class="linkedIn"><a href="#" class="linked">Linked In</a></li>
-                    <li class="twitter"><a href="#" class="twitter">Twitter</a></li>
-                </ul>
-                <div class="copy">
-                    <h2>Ahorra en tus recibos de servicios, gracias al poder de la colaboración</h2>
-                    <p>En japanajá podrás ahorra en los pagos de tus servicios. Sólo publicalos y otra persona los pagará y costará menos. ¿Suena demasiado bueno para ser verdad?, <a href="#">aquí te explicamos cómo.</a></p>
+                        <h2><%= datos.nombre + " "+datos.apellido  %></h2>
+                    </header>
+                    <div class="col-sm-12 form datosper">
+                        <div class="alertas caution">
+                            <p>Estas a sólo un paso de poder iniciar tu transacción. Sólo necesitamos que completes algunos datos más para que puedas realizar tus transacciones.</p>
+                        </div>
+                        <form action="">
+                            <fieldset>
+                                <legend>Tus datos personales:</legend>
+                                <label for="">Nombre:</label>
+                                <input type="text" value="<%= datos.nombre %>" class="nomdp">
+                                
+                                <label for="">Apellidos :</label>
+                                <input type="text" value="<%= datos.apellido %>" class="apedp">
+                                <label for="">Correo:</label>
+                                <input type="text" value="<%= datos.correo %>" class="correodp">
+                                <label for="">DNI:</label>
+                                <input type="text" value="<%= datos.dni %>" class="dnidp">
+                                <label for="">Celular:</label>
+                                <input type="text" value="<%= datos.celular %>" class="celdp">
+                            </fieldset>
+
+
+
+                         <!--  cuentasssss -->
+
+                            <h3>¿En donde quieres que te depositemos el efectivo?</h3>
+                            <fieldset class="cuenta" data-es="das">
+                                <legend>Cuenta Bancaria :</legend>
+                                <label for="">Banco:</label>
+                                <select name="" id="tipoBanco">
+
+                                    <% for(let i=0;bancos.length>i;i++){ %>
+                                    <option value="<%=bancos[i].id_banco %>"><%=bancos[i].nom_banco %></option>
+
+                                    <% } %>
+                                    
+                                </select>
+                                <label for="">Nro. de cuenta:</label>
+                                <input type="text" id="ncuen">
+                                <label for="">Codigo Interbancario CCI:</label>
+                                <input type="text" id="codIn">
+                                <!-- <input type="button" class="btn pull-right" value="Agregar cuenta"> -->
+                            </fieldset>
+                             <center>
+                                 <span id="result" style="color:red"></span>
+                             </center>
+
+                             
+
+
+                            <input type="button" class="btn green" value="Guardar datos" onclick="mantenimiento()">
+                            <input type="button" class="btn red" value="Cancelar">
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="counters">
-            <div class="white-card">
-                <header>
-                    <h1>
-                        Muchas personas ya están ahorrando con Japanajá, tu también puedes
-                    </h1>
-                </header>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Opciones</dt>
-                            <dd>
-                                <span class="count">34</span>
-                                <span class="description">opciones activas</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Operaciones</dt>
-                            <dd>
-                                <span class="count">250</span>
-                                <span class="description">operaciones realizadas</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Servicios pagados</dt>
-                            <dd>
-                                S/ <span class="count">12443</span>
-                                <span class="description">Soles en servicios pagados</span>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+        <div class="container interfaz">
         <section class="contactanos">
             <div class="copy">
                 <h1>
                     ¿Tienes alguna duda adicional?
                 </h1>
                 <p>Si todavía tienes dudas, envíanos un mensaje a nuestro Facebook con tu consulta y te responderemos al instante, <a href="">clic aquí</a></p>
-                <ul class="sociales">
-                    <li><a href="#" class="face">Facebook</a></li>
-                    <li><a href="#" class="linked">LinkedIn</a></li>
-                    <li><a href="#" class="twitter">Twitter</a></li>
-                </ul>
             </div>
         </section>
     </div>
@@ -172,6 +164,11 @@
                 <li><a href="">Términos y condiciones</a></li>
                 <li><a href="">Política de privacidad</a></li>
                 <li><a href="">Libro de Reclamaciones</a></li>
+            </ul>
+            <ul class="sociales">
+                <li><a href="#" class="face">Facebook</a></li>
+                <li><a href="#" class="linked">LinkedIn</a></li>
+                <li><a href="#" class="twitter">Twitter</a></li>
             </ul>
         </section>
     </footer>
@@ -229,42 +226,6 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="ModalPublicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content small">
-            <div class="modal-header">
-                <button type="button" class="close closeM" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Completa los datos para publicar tu opción</h4>
-            </div>
-            <div class="modal-body center">
-                <form action="">
-                    <fieldset class="row">
-                        <select name="" id="tipos">
-                            <% for(var i=0;tipos.length>i;i++){%>
-                                <option value="<%= tipos[i].id_tipo %>"><%= tipos[i].tipo_tipo %> - <%= tipos[i].nom_tipo %></option>
-                                <% }%>option>
-                        </select>
-                        <input type="text" name="codsum" class="help" placeholder="Código de suministro">
-                        <a class="tooltip">info</a>
-                        <input type="text" name="monto" class="help" placeholder="Monto pendiente del total del recibo" >
-                        <a class="tooltip">info</a>
-                        <div class="botonera clearfix">
-                            <input type="button" value="cancelar" class="azul">
-                            <input type="button" value="publicar opción" class="pull-right azul PO">
-                        </div><br>
-                        <span class="errPO"></span>
-                    </fieldset>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal-alert">
-        <h3>Solo unos minutos antes de publicar tu oferta</h3>
-        <p>Para evitar cualquier inconveniente, vamos a validar el monto a pagar en la banca por internet, en caso exista alguna diferencia te avisaremos para que puedas corregirla.</p>
-    </div>
-</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -283,16 +244,6 @@
             });
         });
     </script>
-    <script>
-        //videoPlayback
-        var myVideo = document.getElementById("video"); 
-        function playPause() { 
-            if (myVideo.paused) 
-                myVideo.play(); 
-            else 
-                myVideo.pause(); 
-        } 
-    </script>
-    <script type="text/javascript" src="../Complementos/js/publicar.js"></script>
+    <script type="text/javascript" src="../Complementos/js/acciones.js"></script>
   </body>
 </html>

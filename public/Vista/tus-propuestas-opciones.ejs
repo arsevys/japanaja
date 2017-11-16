@@ -115,27 +115,29 @@
                                     <div class="tabtitle">
                                         <h4>Tus propuestas activas</h4>
                                     </div>
+
+                                    <% if(PropuestasActivas.length<=0){%>
+                                       <br><br>
+                                      <center>No tienes ninguna Propuesta Activa</center>
+                                      <br><br>
+                                    <% } %>
                                     <% for(var i=0;PropuestasActivas.length>i;i++){%>
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Estás proponiendo recibir S/ <%= PropuestasActivas[i].mont_propu %> en efectivo en tu cuenta de <%= PropuestasActivas[i].nom_banco %>, a cambio de pagar un recibo de <%= PropuestasActivas[i].nom_tipo %> de S/ <%= PropuestasActivas[i].mont_opc %></p>
+                                            <p>Estás proponiendo recibir S/ <%= PropuestasActivas[i].mont_opc *0.025 %> en efectivo en tu cuenta de <%= PropuestasActivas[i].nom_banco %>, a cambio de pagar un recibo de <%= PropuestasActivas[i].nom_tipo %> de S/ <%= PropuestasActivas[i].mont_opc %></p>
                                         </div>
                                         <div class="col col-md-3 acciones">
                                             <input type="button" value="Cancelar propuesta" class="red">
+
+
+                                          <a href="/EstadoPropuesta/<%= PropuestasActivas[i].id_propu %>" ><input type="button" style="background-color: #1263bf;" value="Ver Estado" class="blue"></a>
+
                                             <p>Vence en <span class="horaDescuento" data-HT="<%= PropuestasActivas[i].hora %>"><%= PropuestasActivas[i].hora %></span></p>
                                         </div>
                                     </div>
                                     <% }%>
 
-                                    <div class="tabmodule row-fluid clearfix">
-                                        <div class="col col-md-9">
-                                            <p>Marco está proponiendo recibir S/ 270 en efectivo en su cuenta de interbank, a cambio de pagar tu recibo de Enel de S/ 280.40</p>
-                                        </div>
-                                        <div class="col col-md-3 acciones">
-                                            <input type="button" value="Cancelar propuesta" class="red">
-                                            <p>Vence en 08:23:45</p>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="tabpage closed">
                                     <div class="tabtitle">
@@ -151,7 +153,7 @@
 
                                     <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Ahorraste S/ <%= PropuestasRealisadas[i].ahorrado %> al publicar una opción de su recibo de <%= PropuestasRealisadas[i].nom_tipo %> de S/ <%= PropuestasRealisadas[i].mont_opc %></p>
+                                            <p>Ahorraste S/ <%= parseFloat(PropuestasRealisadas[i].ahorrado).toFixed(2) %> al publicar una opción de su recibo de <%= PropuestasRealisadas[i].nom_tipo %> de S/ <%= PropuestasRealisadas[i].mont_opc %></p>
                                             
                                             <p class="small"><span class="fechaOA" data-fechaoa="<%=PropuestasRealisadas[i].fecha_trans%>">Cerró el 12 de julio a las 5:34pm</span></p>
                                         </div>
@@ -185,14 +187,15 @@
                                       <br><br>
                                     <% } %>
 
-                                        <%for(var i=0;OpcionesActivas.length>i;i++){%>
+                                        <% for(var i=0;OpcionesActivas.length>i;i++){%>
                                          <div class="tabmodule row-fluid clearfix">
                                         <div class="col col-md-9">
-                                            <p>Has publicado una opción de su recibo de <%= OpcionesActivas[i].descr_tipo%>
+                                            <p>Has publicado una opción de su recibo de <%= OpcionesActivas[i].nom_tipo%>
                                              de S/ <%= OpcionesActivas[i].mont_opc%></p>
                                         </div>
                                         <div class="col col-md-3 acciones">
-                                            <input type="button" value="Cancelar propuesta" class="red">
+                                            <input type="button" data-can="<%= OpcionesActivas[i].id_opc %>" value="Cancelar propuesta" class="red can" >
+                                            <a href="/EstadoRecibo/<%= OpcionesActivas[i].id_opc %>" ><input type="button" style="background-color: #1263bf;" value="Ver Estado" class="blue"></a>
                                             <p>Vence en <span class="horaDescuento" data-HT="<%= OpcionesActivas[i].hora%>"><%= OpcionesActivas[i].hora%></span></p>
                                         </div>
                                            </div>
@@ -348,7 +351,7 @@
     </script>
      <script type="text/javascript" src="../Complementos/js/moment.js"></script>
     <script type="text/javascript" src="../Complementos/js/es.js"></script>
-
+    <script type="text/javascript" src="../Complementos/js/cancelar.js"></script>
     <script type="text/javascript" src="../Complementos/js/count.js"></script>
   </body>
 </html>

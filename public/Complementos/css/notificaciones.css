@@ -1,0 +1,52 @@
+#notificacion{
+  padding: 1% 10%;
+}
+
+#buscador {
+	margin: 3% 0%;
+}
+
+#buscador input {
+    height: 40px;
+}
+
+#noti > div {
+   border:solid 1px silver;
+}
+
+.cabezera {
+	width: 100%;
+	padding: 3% 5%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+}
+
+.cabezera div{
+	display: flex;
+	justify-content: center;
+	align-self: flex-end;
+	margin-right: 10px;
+}
+
+.cabezera div h3 {
+   color: #4EB92B
+}
+
+.cuerpo {
+	padding: 0% 3% 3% 5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

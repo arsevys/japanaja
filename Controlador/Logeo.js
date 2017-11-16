@@ -27,6 +27,7 @@ console.log(req.body);
                     perfil:"Complementos/imagenes/avatars/perfil.jpg"
                 }
                 res.send({err:false});
+                
         });
 
 }

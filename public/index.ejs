@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+  <head>   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
     <meta name="robots" content="index,follow">
     <link rel="stylesheet" href="Complementos/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="Complementos/css/jpnj.css">
+    <link rel="stylesheet" href="/Complementos/css/jpnj.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,7 +23,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body class="<%= logeadoClass %> home main">
   	<!--[if lt IE 8]>
     	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -44,6 +43,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        <li><a href="">Quiero efectivo</a></li>
+                        <li><a href="">Quiero ahorrar</a></li>
                         <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
@@ -76,7 +77,10 @@
                             </ul>
                         </li>
 
-                        <li class="Logged">
+
+
+
+         <li class="Logged">
                             <a href="#" class="dropdown-toggle alertas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">alertas <span class="sinleer">1</span></a>
                             <ul class="dropdown-menu">
                                 <li>ds</li>
@@ -112,27 +116,21 @@
                     </ul>
 
 
-
-
-
-
-
-
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <section class="row mainHero">
             <div class="col-sm-7 form">
-                <form action="">
+                <div class="formato">
                     <fieldset>
-                        <h2>¿Cuánto efectivo necesitas?</h2>
+                        <h2>¿Cuántos soles necesitas? *</h2>
                         <div class="buscador row">
-                            <input type="text" class="col-sm-4">
-                            <input type="button" class="col-sm-8" value="Buscar opciones de efectivo">
+                            <input type="text" class="col-sm-4" id="monto" onkeypress="onpress(event)">
+                            <input type="button" class="col-sm-8" value="Buscar opciones de efectivo" onclick="consultar()">
                         </div>
-                        <p class="infor">Máximo 600 soles</p>
+                        <p class="infor">* Máximo 500 soles</p>
                     </fieldset>
-                </form>
+                </div>
             </div>
             <div class="col-sm-5 info">
                 <ul class="sociales pull-right">
@@ -142,7 +140,7 @@
                 </ul>
                 <div class="copy">
                     <h1>Obten efectivo rápido, barato y sin evaluaciones</h1>
-                    <p>En japanajá podrás obtener efectivo de manera simple usando tu tarjeta de crédito pero sin los altos costos de disposición de efectivo, <a href="#">aquí te explicamos cómo.</a></p>
+                    <p>En japanajá podrás obtener efectivo de manera simple usando tu tarjeta de crédito pero sin los altos costos de disposición de efectivo, <a href="#">Haz clic aquí para explicarte cómo</a> O también puedes ahorrar en el pago de tus recibos de servicios <a href="#">Haz clic aquí si te interesa</a></p>
                 </div>
             </div>
         </section>
@@ -155,7 +153,7 @@
                     <video id="video" controls>
                         <source src="mov_bbb.mp4" type="video/mp4">
                         <source src="mov_bbb.ogg" type="video/ogg">
-                        Your browser does not support HTML5 video.
+                        Tu navegador no reproduce video en HTML5.
                     </video>
                 </div>
             </div>
@@ -164,146 +162,57 @@
     <div class="container-fluid interfaz">
         <section class="cashSteps verde">
             <header>
-                <h1>Obtén efectivo al instante en 4 pasos</h1>
+                <h1>Tu pagas un recibo con tu tarjeta de crédito y te dan el efectivo a cambio</h1>
+                <h2>Consigue el efectivo al instante en tres simples pasos</h2>
             </header>
-            <ol class="row">
-                <li class="col-sm-3">
-                    <img src="Complementos/img/busca-efectivo.png" alt=""><br>
-                    <span>Busca opciones de efectivo</span>
+            <ol class="row centrado">
+                <li class="col-sm-4">
+                    <img src="" alt=""><br>
+                    <span>Elige un recibo que quieras pagar con tu tarjeta y hazle una propuesta de pago al dueño del recibo.</span>
                 </li>
-                <li class="col-sm-3">
-                    <img src="Complementos/img/haz-propuesta.png" alt=""><br>
-                    <span>Haz una propuesta</span>
+                <li class="col-sm-4">
+                    <img src="" alt=""><br>
+                    <span>Espera que el dueño del recibo acepte tu propuesta.</span>
                 </li>
-                <li class="col-sm-3">
-                    <img src="Complementos/img/espera-propuesta.png" alt=""><br>
-                    <span>Espera que acepten tu propuesta</span>
-                </li>
-                <li class="col-sm-3">
-                    <img src="Complementos/img/recibe-efectivo.png" alt=""><br>
-                    <span>Recibe el efectivo</span>
+                <li class="col-sm-4">
+                    <img src="" alt=""><br>
+                    <span>Paga el recibo y recibe el efectivo a cambio.</span>
                 </li>
             </ol>
         </section>
     </div>
     <div class="container interfaz">
-        <section class="paylessSteps">
-            <header>
-                <h1>O también paga menos por tus servicios en 4 simples pasos</h1>
-            </header>
-            <div class="row payless">
-                <div class="col-sm-5 figure">
-                    <img src="" alt="">
-                </div>
-                <div class="col-sm-7 content">
-                    <ol>
-                        <li><span>Publica una opción sobre un recibo que desees pagar</span></li>
-                        <li><span>Elige la propuesta que mas te convenga</span></li>
-                        <li><span>Deposita el efectivo en Japanajá</span></li>
-                        <li><span>Confirma que tu servicio fué pagado</span></li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-        <section class="recentOps">
-            <header>
-                <h1>Operaciones completadas recientemente</h1>
-            </header>
-            <div class="row smallCards">
-                <div class="col-sm-4 card">
-                    <div class="row profiles">
-                        <div class="file col-sm-6">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a class="good">2</a>
-                                <a class="good">3</a>
-                                <a class="good">4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
-                        <div class="file col-sm-6">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a class="good">2</a>
-                                <a class="good">3</a>
-                                <a class="good">4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
+        <section class="counters">
+            <div class="white-card">
+                <header>
+                    <h1>
+                        Muchas personas ya están ahorrando con Japanajá, tu también puedes
+                    </h1>
+                </header>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <dl>
+                            <dt>Transacciones realizadas</dt>
+                            <dd>
+                                <span class="count">134</span>
+                            </dd>
+                        </dl>
                     </div>
-                </div>
-                <div class="col-sm-4 card">
-                    <div class="row profiles">
-                        <div class="col-sm-6 file">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a class="good">2</a>
-                                <a class="good">3</a>
-                                <a>4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 file">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a class="good">2</a>
-                                <a class="good">3</a>
-                                <a>4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
+                    <div class="col-sm-4">
+                        <dl>
+                            <dt>Montos pagados en recibos</dt>
+                            <dd>
+                                <span class="count">20431</span>
+                            </dd>
+                        </dl>
                     </div>
-                </div>
-                <div class="col-sm-4 card">
-                    <div class="row profiles">
-                        <div class="col-sm-6 file">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a class="good">2</a>
-                                <a class="good">3</a>
-                                <a>4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 file">
-                            <figure>
-                                <img src="Complementos/imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <h2>Alberto</h2>
-                            <p>Obtuvo S/ 250</p>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a>2</a>
-                                <a>3</a>
-                                <a>4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
+                    <div class="col-sm-4">
+                        <dl>
+                            <dt>Ahorro acumulado de los usuarios</dt>
+                            <dd>
+                                S/ <span class="count">2840</span>
+                            </dd>
+                        </dl>
                     </div>
                 </div>
             </div>
@@ -314,11 +223,6 @@
                     ¿Tienes alguna duda adicional?
                 </h1>
                 <p>Si todavía tienes dudas, envíanos un mensaje a nuestro Facebook con tu consulta y te responderemos al instante, <a href="">clic aquí</a></p>
-                <ul class="sociales">
-                    <li><a href="#" class="face">Facebook</a></li>
-                    <li><a href="#" class="linked">LinkedIn</a></li>
-                    <li><a href="#" class="twitter">Twitter</a></li>
-                </ul>
             </div>
         </section>
     </div>
@@ -328,6 +232,11 @@
                 <li><a href="">Términos y condiciones</a></li>
                 <li><a href="">Política de privacidad</a></li>
                 <li><a href="">Libro de Reclamaciones</a></li>
+            </ul>
+            <ul class="sociales">
+                <li><a href="#" class="face">Facebook</a></li>
+                <li><a href="#" class="linked">LinkedIn</a></li>
+                <li><a href="#" class="twitter">Twitter</a></li>
             </ul>
         </section>
     </footer>
@@ -341,7 +250,8 @@
       </div>
       <div class="modal-body center">
         <form action="">
-        <a href="/registrar/facebook"><input type="button" class="faceBtn" value="Continuar con facebook"></a>
+        <a href="/registrar/facebook">
+            <input type="button" class="faceBtn" value="Continuar con facebook"></a>
         <fieldset>
             <legend>o utiliza tu correo para iniciar sesión</legend>
             <input type="text"  name="correolog" placeholder="Correo">
@@ -370,8 +280,7 @@
       <div class="modal-body center">
         <form id="frmRegistrar" action="">
         <a href="/registrar/facebook">
-            <input type="button" class="faceBtn" value="Continuar con facebook">
-        </a>
+        <input type="button" class="faceBtn" value="Continuar con facebook"></a>
         <fieldset>
             <legend>regístrate</legend>
             <input type="text"  name="correo" placeholder="Correo">
@@ -383,7 +292,6 @@
             <input type="button"  name="enviar"  value="Registrarme"><br>
             <span class="aviso"></span>
         </fieldset>
-
         </form>
         </div>
         <div class="modal-footer">
@@ -392,6 +300,31 @@
     </div>
   </div>
 </div>
+
+
+<a href="#" id="active"  data-toggle="modal" data-target="#ModalAlerta"  ></a>
+
+<div class="modal fade" id="ModalAlerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" style="border:solid 1px red">
+        <div class="modal-header">
+             <h4 class="modal-title" id="myModalLabel" style="color:tomato">Monto Invalido</h4>
+        </div>
+        <div class="modal-body center">
+            <p style="font-size:1.2em"></p>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -409,9 +342,38 @@
                 }
             });
         });
-    </script>
-    <script>
-        //videoPlayback
+
+          function onpress(event){
+
+              if(event.which== 13)
+                  consultar();
+            }
+
+
+        function consultar(){           
+                var num = document.getElementById("monto").value;
+                 
+                if(num == ""){
+                   window.location.href = '/filtros?num=' + num 
+                }
+                else if (!/^[0-9]{0,3}[.]{0,1}[0-9]{0,3}$/.test(num)){
+                    document.querySelector("#ModalAlerta .modal-header h4").innerText = "Monto no valido";
+                    document.querySelector("#ModalAlerta .modal-body p").innerText = "Ingrese un monto valido";
+                    document.getElementById("active").click();    
+                    document.getElementById("monto").value ="";
+                }
+                else if (parseFloat(num) > 500) {
+                    document.querySelector("#ModalAlerta .modal-header h4").innerText = "Monto muy elevado";
+                    document.querySelector("#ModalAlerta .modal-body p").innerHTML = "Recuerde que lo maximo que puede solicitar <br> son 500 Nuevos Soles";
+                    document.getElementById("active").click();
+                }
+                else {
+                    window.location.href = '/filtros?num=' + num 
+                }
+        }
+
+
+
         var myVideo = document.getElementById("video"); 
         function playPause() { 
             if (myVideo.paused) 
@@ -420,6 +382,6 @@
                 myVideo.pause(); 
         } 
     </script>
-    <script type="text/javascript" src="Complementos/js/logre.js"></script>
   </body>
+  <script type="text/javascript" src="Complementos/js/logre.js"></script>
 </html>

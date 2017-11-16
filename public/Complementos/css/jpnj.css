@@ -459,12 +459,12 @@ template {
 /normalize*/
 
 body{
-   border-top: 9px solid #4eb92b;
-   padding: 0;
-   margin: 0;
-   font-family: 'Lato', sans-serif;
-   color: #8e8e8e;
-   overflow-x: hidden;
+    border-top: 9px solid #4eb92b;
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    color: #8e8e8e;
+    overflow-x: hidden;
 }
 
 body.main{
@@ -504,7 +504,7 @@ body.Logged .modal .modal-dialog .modal-content{
 /*mods*/
 
 .interfaz header{
-  height: 86px;
+  min-height: 76px;
   padding: 8px;
   text-align: center;
   padding-right:0;
@@ -513,6 +513,13 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .interfaz header h1{
   color: #1263bf;
+  font-size: 24px;
+}
+
+.interfaz header h2{
+  color:#ffffff;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /*cabecera*/
@@ -527,14 +534,14 @@ body.Logged .modal .modal-dialog .modal-content{
 /*menubootstrap*/
 
 .interfaz .cabecera .navbar-header{
-  width:333px;
+  width:324px;/*333*/
   height: 140px;
   padding:60px 0 0 40px;
 }
 
 .interfaz .cabecera .navbar-header:before{
   width: 100%;
-  height: 98px;
+  height: 102px;
   border-bottom: 1px solid #fff;
   top:0;
   right:-348px;
@@ -562,11 +569,11 @@ body.Logged .modal .modal-dialog .modal-content{
 }
 
 .interfaz .cabecera .navbar-nav{
-  padding: 11px 0 0 0;
+  padding: 14px 0 0 0;
 }
 
 .interfaz .cabecera .navbar-nav li{
-  margin-right: 18px;
+  margin-right: 14px;
 }
 
 .interfaz .cabecera .navbar-nav li a{
@@ -574,7 +581,7 @@ body.Logged .modal .modal-dialog .modal-content{
   line-height: 90px;
   padding: 0 7px;
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;/*20*/
   color: #1263bf;
 }
 
@@ -589,7 +596,7 @@ body.Logged .modal .modal-dialog .modal-content{
 }
 
 .interfaz .cabecera .navbar-nav.navbar-right{
-  padding: 30px 0 0 0;
+  padding: 33px 25px 0 0;
 }
 
 .interfaz .cabecera .navbar-nav.navbar-right li{
@@ -647,11 +654,10 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .interfaz .cabecera .navbar-nav.navbar-right a{
   height: 54px;
-  line-height: 50px;
-  width: 150px;
+  line-height: 50px;/*width: 150px;*/
   text-align: center;
-  border-radius: 10px;
-  font-size: 20px;
+  border-radius: 10px;/*font-size: 20px;*/
+  padding: 0 25px;
 }
 
 .interfaz .cabecera .navbar-nav.navbar-right a.iniciar{
@@ -765,20 +771,21 @@ body.Logged .modal .modal-dialog .modal-content{
   padding:0 0 0 55px;
 }
 
-.interfaz .mainHero .form form{
+.interfaz .mainHero .form .formato{
   position: relative;
 }
 
-.interfaz .mainHero .form form fieldset{
+.interfaz .mainHero .form .formato fieldset{
   background:#1263bf;
   width: 480px;
   height: 270px;
   border-radius: 24px;
   padding:80px 58px;
-  margin-top: 165px;
+  margin: 170px 0 0 13px;
+  position: relative;
 }
 
-.interfaz .mainHero .form form fieldset h1{
+.interfaz .mainHero .form .formato fieldset h1{
   color: #fff;
   padding: 8px 20px;
   margin: 0 0 8px 0;
@@ -790,57 +797,80 @@ body.Logged .modal .modal-dialog .modal-content{
   position: absolute;
   top:-25px;
   left: 25px;
-  font-size: 36px;
+  font-size: 36px;/*@media (--mobile) {
+                     font-size: 22px;
+                  }*/
 }
 
-.interfaz .mainHero .form form fieldset h2{
+.interfaz .mainHero .form .formato fieldset h2{
   color: #fff;
   padding: 0;
   margin: 0 0 8px 0;
   text-align: center;
+  font-size: 28px;/*@media (--tablet) {
+                     font-size: 26px;
+                  }
+                  @media (--mobile) {
+                     font-size: 18px;
+                  }*/
 }
 
-.interfaz .mainHero .form form fieldset .buscador{
+.interfaz .mainHero .form .formato fieldset .buscador{
   background:#fff;
   padding:5px 6px;
   border-radius: 8px;
   margin: 0;
 }
 
-.interfaz .mainHero .form form fieldset .buscador input{
+.interfaz .mainHero .form .formato fieldset .buscador input{
   height:44px;
   border:0;
 }
 
-.interfaz .mainHero .form form fieldset .buscador input[type='text']{
-  font-size: 38px;
+.interfaz .mainHero .form .formato fieldset .buscador input[type='text']{
+  font-size: 40px;
   padding:5px 5px 0px 35px;
-  background:url(../img/layout/icon-sol.png) no-repeat 6px 15px;
+  background:url(../img/layout/icon-sol.png) no-repeat 8px 14px;/*@media (--mobile) {
+                           width: 100%;
+                           text-align: center;
+                           padding: 5px 35px 0px 35px;
+                        }*/
 }
 
-.interfaz .mainHero .form form fieldset .buscador input[type='button']{
+.interfaz .mainHero .form .formato fieldset .buscador input[type='button']{
   font-size: 15px;
   border-radius: 10px;
   background: #4eb92b;
   color:#fff;
+  padding-right: 10px;
+  padding-left:10px;
 }
 
-.interfaz .mainHero .form form fieldset .buscador input[type='button']:hover{
+/*@media (--mobile) {
+                           width: 100%;
+                           padding:5px;
+                        }*/
+
+.interfaz .mainHero .form .formato fieldset .buscador input[type='button']:hover{
   background: #31A40B;
 }
 
-.interfaz .mainHero .form form fieldset .infor{
-  font-size: 11px;
+.interfaz .mainHero .form .formato fieldset .infor{
+  font-size: 14px;
   color: #fff;
   margin: 6px 0 0 21px;
 }
 
-.interfaz .mainHero .form.verde form fieldset{
+.interfaz .mainHero .form.verde .formato fieldset{
   background: #4eb92b;
   padding: 60px 54px;
 }
 
-/*@media (--mobile) {
+/*@media (--tablet) {
+                     width: 420px;
+                     padding: 60px 30px;
+                  }
+                  @media (--mobile) {
                      margin-top: 80px;
                      width: 100%;
                      padding: 24px 18px;
@@ -849,11 +879,11 @@ body.Logged .modal .modal-dialog .modal-content{
                      margin: 100px 0px 20px 0px;
                   }*/
 
-.interfaz .mainHero .form.verde form fieldset .buscador{
+.interfaz .mainHero .form.verde .formato fieldset .buscador{
   background-color: transparent;
 }
 
-.interfaz .mainHero .form.verde form fieldset .buscador select{
+.interfaz .mainHero .form.verde .formato fieldset .buscador select{
   font-size: 22px;
   padding:5px 15px 0px 15px;
   border-radius: 8px;
@@ -865,7 +895,7 @@ body.Logged .modal .modal-dialog .modal-content{
                         }*/
 }
 
-.interfaz .mainHero .form.verde form fieldset .buscador input[type='button']{
+.interfaz .mainHero .form.verde .formato fieldset .buscador input[type='button']{
   background: #1263bf;
 }
 
@@ -874,11 +904,11 @@ body.Logged .modal .modal-dialog .modal-content{
                               margin-top: 5px;
                            }*/
 
-.interfaz .mainHero .form.verde form fieldset .buscador input[type='button']:hover{
+.interfaz .mainHero .form.verde .formato fieldset .buscador input[type='button']:hover{
   background: #0d498c;
 }
 
-.interfaz .mainHero .form.verde form fieldset .buscador input[type="text"]{
+.interfaz .mainHero .form.verde .formato fieldset .buscador input[type="text"]{
   background: #fff;
   padding: 6px 12px;
   border-radius: 8px;
@@ -887,17 +917,17 @@ body.Logged .modal .modal-dialog .modal-content{
   font-size: 22px;
 }
 
-.interfaz .mainHero .form.verde form fieldset .infor{
+.interfaz .mainHero .form.verde .formato fieldset .infor{
   margin: 0;
 }
 
-.interfaz .mainHero .form.verde form fieldset .infor input[type='radio']{
+.interfaz .mainHero .form.verde .formato fieldset .infor input[type='radio']{
   width: 20px;
   height: 16px;
   margin: 5px 20px 0 0;
 }
 
-.interfaz .mainHero .form.verde form fieldset .infor label{
+.interfaz .mainHero .form.verde .formato fieldset .infor label{
   width: 15px;
   height: 15px;
   position: absolute;
@@ -908,7 +938,7 @@ body.Logged .modal .modal-dialog .modal-content{
 /*/.form*/
 
 .interfaz .mainHero .info{
-  padding:0 55px 35px 75px;
+  padding:0 46px 35px 75px;
 }
 
 .interfaz .mainHero .info .sociales{
@@ -960,13 +990,13 @@ body.Logged .modal .modal-dialog .modal-content{
 }
 
 .interfaz .mainHero .info .copy h1{
-  font-size: 45px;
+  font-size: 38px;
   text-align: right;
   letter-spacing: -0.02em;
   font-style: italic;
   padding: 13px 4px 0 0;
   color: #1263bf;
-  margin: 0.50em 0;
+  margin: 5px 0;
   position: relative;
 }
 
@@ -1006,9 +1036,9 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .interfaz .mainHero .info .copy p{
   padding: 0 4px 0 25px;
-  font-size: 22px;
+  font-size: 17px;
   text-align: right;
-  line-height: 30px;
+  line-height: 24px;
   font-weight: 700;
 }
 
@@ -1053,18 +1083,22 @@ body.Logged .modal .modal-dialog .modal-content{
 /*mainHero*/
 
 .interfaz .cashSteps{
-  padding:0px 15px 65px 15px;
+  padding:0px 15px 45px 15px;
 }
 
 .interfaz .cashSteps.verde{
   background: #4eb92b;
   border-top: 25px solid #d3e7cd;
   border-bottom: 25px solid #d3e7cd;
-  margin: 0 -15px;
+  margin: 0 -15px 55px -15px;
 }
 
 .interfaz .cashSteps.verde h1{
   color:#fff;
+}
+
+.interfaz .cashSteps.verde h2{
+  margin-top: 0;
 }
 
 .interfaz .cashSteps.verde ol{
@@ -1073,14 +1107,21 @@ body.Logged .modal .modal-dialog .modal-content{
   padding: 0;
 }
 
+.interfaz .cashSteps.verde ol.centrado{
+  width:1170px;
+  margin: 35px auto 0 auto;
+}
+
 .interfaz .cashSteps.verde ol li{
   margin: 0;
   padding: 0;
   list-style: none;
   color: #fff;
   min-height: 250px;
-  font-size: 20px;
+  font-size: 16px;
 }
+
+/*20px*/
 
 .interfaz .cashSteps.verde ol li img{
   width: 200px;
@@ -1092,6 +1133,9 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .cashSteps.verde ol li:nth-child(1) span{
   position: relative;
   margin:0 -20px 0 0px;
+  top:15px;
+  display: inline-block;
+  width: 270px;
 }
 
 .interfaz .cashSteps.verde ol li:nth-child(1) span:after{
@@ -1105,6 +1149,9 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .cashSteps.verde ol li:nth-child(2) span{
   position: relative;
   margin:0 -20px 0 0px;
+  top:15px;
+  display: inline-block;
+  width: 270px;
 }
 
 .interfaz .cashSteps.verde ol li:nth-child(2) span:after{
@@ -1118,6 +1165,9 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .cashSteps.verde ol li:nth-child(3) span{
   position: relative;
   margin:0 -20px 0 0px;
+  top:15px;
+  display: inline-block;
+  width: 270px;
 }
 
 .interfaz .cashSteps.verde ol li:nth-child(3) span:after{
@@ -1131,6 +1181,9 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .cashSteps.verde ol li:nth-child(4) span{
   position: relative;
   margin:0 -20px 0 0px;
+  top:15px;
+  display: inline-block;
+  width: 270px;
 }
 
 .interfaz .cashSteps.verde ol li:nth-child(4) span:after{
@@ -1145,6 +1198,22 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .interfaz .paylessSteps{
   padding:0px 15px 45px 15px;
+}
+
+.interfaz .paylessSteps h1{
+  color:#fff;
+}
+
+.interfaz .paylessSteps.azul{
+  background: #1263bf;
+  border-top: 25px solid #C4D4E7;
+  border-bottom: 25px solid #C4D4E7;
+  margin: 0 -15px 55px -15px;
+}
+
+.interfaz .paylessSteps.azul .centrado{
+  width:1170px;
+  margin: 35px auto 0 auto;
 }
 
 .interfaz .paylessSteps .payless{
@@ -1166,7 +1235,7 @@ body.Logged .modal .modal-dialog .modal-content{
   margin: 0;
   padding: 0;
   list-style: none;
-  color: #6D8CA4;
+  color: #fff;
   font-size: 20px;
   height: 64px;
   position: relative;
@@ -1184,7 +1253,7 @@ body.Logged .modal .modal-dialog .modal-content{
   top: -8px;
   font-size: 32px;
   font-weight: 700;
-  color: #1263bf;
+  color:#fff;
 }
 
 .interfaz .paylessSteps .payless ol li:nth-child(2) span{
@@ -1199,7 +1268,7 @@ body.Logged .modal .modal-dialog .modal-content{
   top: -8px;
   font-size: 32px;
   font-weight: 700;
-  color: #1263bf;
+  color:#fff;
 }
 
 .interfaz .paylessSteps .payless ol li:nth-child(3) span{
@@ -1214,7 +1283,7 @@ body.Logged .modal .modal-dialog .modal-content{
   top: -8px;
   font-size: 32px;
   font-weight: 700;
-  color: #1263bf;
+  color:#fff;
 }
 
 .interfaz .paylessSteps .payless ol li:nth-child(4) span{
@@ -1229,7 +1298,7 @@ body.Logged .modal .modal-dialog .modal-content{
   top: -8px;
   font-size: 32px;
   font-weight: 700;
-  color: #1263bf;
+  color:#fff;
 }
 
 /*/mods*/
@@ -1287,7 +1356,7 @@ body.Logged .modal .modal-dialog .modal-content{
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
-  margin-bottom: 65px;
+  margin-bottom: 60px;
 }
 
 .interfaz .counters .white-card{
@@ -1296,11 +1365,20 @@ body.Logged .modal .modal-dialog .modal-content{
   border-radius: 15px;
 }
 
+.interfaz .counters .white-card header{
+  padding:0px 8px 8px 8px;
+  min-height: 70px;
+}
+
+.interfaz .counters .white-card header h1{
+  margin: 0;
+}
+
 .interfaz .counters .white-card dt{
   font-size: 18px;
   font-weight: 700;
   color:#6F8EA5;
-  margin: 0 0 24px 0;
+  margin: 0 0 5px 0;
 }
 
 .interfaz .counters .white-card dd{
@@ -1403,8 +1481,9 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .contactanos .copy{
   background: #1263bf;
   color:#fff;
-  padding: 45px 90px;
+  padding: 30px 90px;
   text-align: center;
+  border-radius:12px;
 }
 
 .interfaz .contactanos .copy a{
@@ -1453,18 +1532,48 @@ body.Logged .modal .modal-dialog .modal-content{
 }
 
 .interfaz .contactanos .copy h1{
-  font-size: 30px;
+  font-size: 24px;
+  margin: 0 0 30px 0;
 }
 
 .interfaz .contactanos .copy p{
-  font-size: 26px;
+  font-size: 18px;
   line-height: 1.2;
 }
 
 /*paginas internas*/
 
 .interfaz .main-internal-page{
-  margin: 65px 0 65px 0;
+  margin: 20px 0 65px 0;
+}
+
+.interfaz .main-internal-page figure{
+  border: 6px solid #1263bf;
+  padding: 0;
+  text-align: center;
+  margin: 5px auto;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.interfaz .main-internal-page figure img{
+  width:80px;
+  height: 80px;
+  display: block;
+  background-color: black;
+  margin: -4px;
+  padding: 0;
+}
+
+.interfaz .main-internal-page .alertas.caution{
+  background: #EB8D01 url(../img/alerta-caution-01.png) no-repeat 18px 50%;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  color:#fff;
+  font-size: 12px;
+  padding: 12px 16px 6px 80px;
 }
 
 .interfaz .main-internal-page .nopad{
@@ -1473,7 +1582,7 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .interfaz .main-internal-page .nopad .white-card{
   background:#fff;
-  padding:20px 55px 55px 60px;
+  padding:45px 40px 55px 40px;
   border-radius: 15px;
   min-height: 45vh;
 }
@@ -1558,26 +1667,6 @@ body.Logged .modal .modal-dialog .modal-content{
   font-weight: 900;
 }
 
-.interfaz .main-internal-page .nopad .white-card .tabpages .tabmodule .acciones figure{
-  border: 6px solid #1263bf;
-  padding: 0;
-  text-align: center;
-  margin: 5px auto;
-  width: 80px;
-  height: 80px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.interfaz .main-internal-page .nopad .white-card .tabpages .tabmodule .acciones figure img{
-  width:80px;
-  height: 80px;
-  display: block;
-  background-color: black;
-  margin: -4px;
-  padding: 0;
-}
-
 .interfaz .main-internal-page .nopad .white-card .tabpages .tabmodule p.small{
   font-size: 14px;
 }
@@ -1590,6 +1679,451 @@ body.Logged .modal .modal-dialog .modal-content{
 .interfaz .main-internal-page .nopad .white-card .tabpages .closed .tabmodule{
   background-color: #E9EAEA;
   border:1px solid #E9EAEA;
+}
+
+.interfaz .main-internal-page .datosper{
+  width: 440px;
+  margin: 0 auto;
+  float:none;
+}
+
+.interfaz .main-internal-page .datosper fieldset{
+  border:1px solid #7EACE1;
+  border-radius: 6px;
+  padding: 0px 30px 30px 30px;
+  margin-bottom: 0;
+}
+
+.interfaz .main-internal-page .datosper legend{
+  font-size: 16px;
+  font-weight: 700;
+  color: #1263bf;
+  border:none;
+  display: inline;
+  width: auto;
+  width:initial;
+  padding:0 6px;
+}
+
+.interfaz .main-internal-page .datosper label{
+  display: block;
+  width: 100%;
+  color: #6F8EA5;
+  font-size: 12px;
+  line-height: 0;
+  padding: 16px 8px 4px 8px;
+  font-weight: normal;
+}
+
+.interfaz .main-internal-page .datosper input[type="text"]{
+  display: block;
+  width: 100%;
+  height: 40px;
+  border:1px solid #7EACE1;
+  border-radius: 6px;
+  padding: 16px;
+  color: #7EACE1;
+}
+
+.interfaz .main-internal-page .datosper input[type="button"]{
+  background-color: #1263bf;
+  padding: 9px 18px;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.interfaz .main-internal-page .datosper input[type="button"].green{
+  background: #4eb92b;
+  color:#ffffff;
+  font-size: 18px;
+  padding: 10px 22px;
+}
+
+.interfaz .main-internal-page .datosper input[type="button"].red{
+  background: #C90F3B;
+  color:#ffffff;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 10px 22px;
+}
+
+.interfaz .main-internal-page .datosper select{
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  color: #7EACE1;
+  border:1px solid #7EACE1;
+  border-radius: 6px;
+}
+
+.interfaz .main-internal-page .datosper h3{
+  color:#6F8EA5;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card{
+  padding:45px 40px 80px 40px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form{
+  padding:0 20px 20px 20px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset h1{
+  font-size: 24px;
+  color: #1263bf;
+  font-weight: bold;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .buscador{
+  background:#fff;
+  padding:5px 6px;
+  border-radius: 8px;
+  margin: 0;
+  width: 366px;
+  border: 1px solid #6f8ea5;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .buscador  input{
+  height:44px;
+  border:0;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .buscador  input[type='text']{
+  font-size: 40px;
+  padding:5px 5px 0px 35px;
+  background:url(../img/layout/icon-sol.png) no-repeat 8px 14px;/*@media (--mobile) {
+                                                width: 100%;
+                                                text-align: center;
+                                                padding: 5px 35px 0px 35px;
+                                            }*/
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .buscador  input[type='button']{
+  font-size: 15px;
+  border-radius: 10px;
+  background: #4eb92b;
+  color:#fff;
+  padding-right: 10px;
+  padding-left:10px;
+}
+
+/*@media (--mobile) {
+                                                width: 100%;
+                                                padding:5px;
+                                            }*/
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .buscador  input[type='button']:hover{
+  background: #31A40B;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .form.verde fieldset .infor{
+  font-size: 12px;
+  color: #1263bf;
+  opacity: 0.6;
+  margin: 11px 0 0 21px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash{
+  background-color: #f7f8fa;
+  margin-bottom: 35px;
+  border-radius: 8px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash > div{
+  position: relative;
+  min-height: 280px;
+  text-align: center;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash > div:nth-child(1){
+  background-color: #e8ecf0;
+  border-radius: 8px 0 0 8px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash > div:nth-child(2){
+  background-color: #eff2f5;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash h2{
+  font-size: 16px;
+  min-height: 38px;
+  color:#6F8EA5;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash h3{
+  color:#6F8EA5;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 8px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p{
+  font-size: 16px;
+  min-height: 38px;
+  color:#6F8EA5;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p.monto{
+  font-size: 40px;
+  color: #1263bf;
+  margin-left: -25px;
+  margin-top: 45px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p.cierre{
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p.bold{
+  font-weight: 900;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p.blue{
+  color: #1263bf;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p.verde{
+  color: #4eb92b;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash p .decimales{
+  font-size: 24px;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 3px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash fieldset{
+  height: 280px;
+  padding-top: 120px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .easycash fieldset input{
+  background-color: #1263bf;
+  color: #fff;
+  font-size: 16px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content{
+  color:#2A4457;
+  font-size: 16px;
+  padding: 45px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content h1{
+  font-size: 24px;
+  color: #1263bf;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content h2{
+  font-size: 18px;
+  color: #1263bf;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content p.timer{
+  font-size: 18px;
+  color: #2A4457;
+  font-weight: 700;
+  text-align: center;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .confirma-deposito{
+  width: 450px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .confirma-deposito input[type="text"]{
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #7EACE1;
+  border-radius: 6px;
+  padding: 16px;
+  color: #7EACE1;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .confirma-deposito input[type="button"]{
+  background-color: #1263bf;
+  padding: 9px 18px;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .confirma-deposito input[type="button"].green{
+  background-color: #4eb92b;
+  margin-bottom: 25px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content form{
+  width:420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content form .input-group-btn:first-child > .btn{
+  background-color: #1263bf;
+  height: 45px;
+  line-height: 25px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content form input{
+  margin: 15px 0;
+  height: 45px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content form input[type="button"]{
+  background-color: #4eb92b;
+  padding: 9px 18px;
+  color: #fff;
+  font-size: 16px;
+  margin: 15px auto;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas{
+  border-bottom: 1px solid #7EACE1;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas:last-child{
+  border-bottom: 0;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas figure{
+  margin: 12px auto;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas h2{
+  color:#6F8EA5;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas p{
+  color: #1263bf;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas input{
+  margin: 15px 0;
+  height: 45px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .propuestas input[type="button"]{
+  background-color: #1263bf;
+  padding: 9px 18px;
+  color: #fff;
+  font-size: 16px;
+  margin: 15px auto;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .easycash h2{
+  font-size: 16px!important;
+  min-height: 38px;
+  color:#6F8EA5;
+  font-weight: 700;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .easycash p.monto{
+  margin-top: 0px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .step-content .easycash > div{
+  min-height: 0;
+  min-height: initial;
+  padding-bottom: 25px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3{
+  width:420px;
+  margin: 0 auto;
+  color:#7EACE1;
+  border-radius: 19px;
+  background: #F0F3F5;
+  text-align: center;
+  padding:0  40px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3 .step{
+  padding: 85px 0 0 0;
+  font-size: 12px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3 .step:before{
+  content: "";
+  width:50px;
+  height: 50px;
+  border:5px solid #7EACE1;
+  position: absolute;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-left: -25px;
+  margin-top: -60px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3 .step.current{
+  color:#333;
+  font-weight: bold;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3 .step.current:before{
+  border: 5px solid #4eb92b;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps3 .step.done:before{
+  border: 5px solid #4eb92b;
+  background-color: #4eb92b;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4{
+  width:560px;
+  margin: 0 auto;
+  color:#7EACE1;
+  border-radius: 19px;
+  background: #F0F3F5;
+  text-align: center;
+  padding:0  40px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4 .step{
+  padding: 85px 0 0 0;
+  font-size: 12px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4 .step:before{
+  content: "";
+  width:50px;
+  height: 50px;
+  border:5px solid #7EACE1;
+  position: absolute;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-left: -25px;
+  margin-top: -60px;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4 .step.current{
+  color:#333;
+  font-weight: bold;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4 .step.current:before{
+  border: 5px solid #4eb92b;
+}
+
+.interfaz .main-internal-page.cash .nopad .white-card .steps4 .step.done:before{
+  border: 5px solid #4eb92b;
+  background-color: #4eb92b;
 }
 
 .interfaz .main-internal-footer{
@@ -1643,14 +2177,12 @@ body.Logged .modal .modal-dialog .modal-content{
    padding-left: 25px;
    padding-bottom: 0;
    margin-bottom: 0;
-   margin-top: 45px;
+   margin-top: 25px;
 }
 
 .pie ul{
-  border-bottom:15px solid #6d8ca4;
   text-align: center;
   margin: 0;
-  padding-bottom: 75px;
 }
 
 .pie ul li{
@@ -1660,6 +2192,49 @@ body.Logged .modal .modal-dialog .modal-content{
 .pie ul li a{
   display: inline-block;
   padding:0 15px;
+}
+
+.pie .sociales{
+  margin: 30px 0 0 0;
+  padding: 0;
+  border-bottom:15px solid #6d8ca4;
+  padding-bottom: 75px;
+}
+
+.pie .sociales li{
+  width: 42px;
+  height: 42px;
+  margin: 10px 10px 10px 10px;
+  padding: 0;
+  list-style: none;
+  display: inline;
+}
+
+.pie .sociales li a{
+  width: 42px;
+  border: 3px solid #1263bf;
+  display: inline-block;
+  height: 42px;
+  text-indent: -8888px;
+  overflow: hidden;
+  border-radius: 21px;
+}
+
+.pie .sociales li a.face{
+  background: url(../img/layout/icon-face-blue.png) no-repeat center center;
+}
+
+.pie .sociales li a.linked{
+  background: url(../img/layout/icon-linked-blue.png) no-repeat center center;
+}
+
+.pie .sociales li a.twitter{
+  background: url(../img/layout/icon-twitter-blue.png) no-repeat center center;
+}
+
+.pie .sociales li a:hover{
+  border: 3px solid #1263bf;
+  background-color: #fff;
 }
 
 /*UTILES*/
@@ -1899,6 +2474,16 @@ body.Logged .modal .modal-dialog .modal-content{
   height: 50px;
 }
 
+.modal .modal-dialog .modal-content .modal-body form input[type="button"].red{
+  background:#C90F3B;
+  margin: 5px;
+}
+
+.modal .modal-dialog .modal-content .modal-body form input[type="button"].green{
+  background: #4eb92b;
+  margin: 5px;
+}
+
 .modal .modal-dialog .modal-content.small .modal-header h4{
   font-size: 20px;
 }
@@ -1977,6 +2562,156 @@ body.Logged .modal .modal-dialog .modal-content{
 
 .modal .modal-dialog .modal-content .modal-footer.gris p{
   font-size: 14px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content{
+  border: 2px solid #1263bf;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-header{
+  padding: 48px 20px 15px 20px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-header h4{
+  font-size: 18px;
+  margin: 15px 0 0 0;
+  padding: 0;
+  font-weight: 700;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body{
+  padding: 0 45px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form .easycash > div{
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form .easycash > div:nth-child(1){
+  background-color: #e8ecf0;
+  border-radius: 8px 0 0 8px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form .easycash > div:nth-child(2){
+  background-color: #eff2f5;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form h2{
+  font-size: 16px;
+  min-height: 0;
+  min-height: initial;
+  color:#6F8EA5;
+  font-weight: 700;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form h3{
+  color: #1263bf;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p{
+  font-size: 16px;
+  min-height: 38px;
+  color:#6F8EA5;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p.monto{
+  font-size: 40px;
+  color: #1263bf;
+  margin-left: -25px;
+  margin-top: 0;
+  margin-top: initial;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p.cierre{
+  font-weight: 700;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p.bold{
+  font-weight: 900;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p.blue{
+  color: #1263bf;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p.verde{
+  color: #4eb92b;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form p .decimales{
+  font-size: 24px;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 3px;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form fieldset{
+  padding: 0;
+  width: 390px;
+  border: 1px solid #ffffff;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form fieldset label{
+  text-align: left;
+  width: 90%;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form fieldset input{
+  background-color: #1263bf;
+  color: #fff;
+  font-size: 16px;
+  margin: 5px auto;
+}
+
+.modal.modal-propuesta .modal-dialog .modal-content .modal-body form fieldset select{
+  width: 350px;
+}
+
+.modal.modal-ok .modal-dialog .modal-content{
+  border: 2px solid #4eb92b;
+  width: 400px;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-header{
+  padding: 48px 20px 15px 20px;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-header h4{
+  font-size: 18px;
+  margin: 15px 0 0 0;
+  padding: 0;
+  font-weight: 700;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-body{
+  padding: 0 45px;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-body p{
+  font-size: 16px;
+  font-weight: 700;
+  color:#6F8EA5;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-body form{
+  padding: 0;
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+
+.modal.modal-ok .modal-dialog .modal-content .modal-body form input{
+  background-color: #1263bf;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 32px;
+  margin: 5px auto;
+  height: auto;
+  height: initial;
 }
 
 @media (min-width: 300px) and (max-width: 767px){
@@ -2124,30 +2859,7 @@ body.Logged .modal .modal-dialog .modal-content{
   }
 
   .interfaz .mainHero .form form fieldset{
-    margin-top: 80px;
-    width: 100%;
-    padding: 44px 28px;
-    max-width: 450px;
-    height: auto;
-  }
-
-  .interfaz .mainHero .form form fieldset h1{
-    font-size: 22px;
-  }
-
-  .interfaz .mainHero .form form fieldset h2{
-    font-size: 18px;
-  }
-
-  .interfaz .mainHero .form form fieldset .buscador input[type='text']{
-    width: 100%;
-    text-align: center;
-    padding: 5px 35px 0px 35px;
-  }
-
-  .interfaz .mainHero .form form fieldset .buscador input[type='button']{
-    width: 100%;
-    padding: 5px;
+    margin: 55px auto 0 auto;
   }
 
   .interfaz .mainHero .info{
@@ -2239,6 +2951,10 @@ body.Logged .modal .modal-dialog .modal-content{
   .pie ul{
     padding: 0 0 50px 0;
   }
+
+  .pie .sociales li{
+    margin: 5px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1279px){
@@ -2247,15 +2963,35 @@ body.Logged .modal .modal-dialog .modal-content{
     font-size: 22px;
   }
 
+  .interfaz .cabecera .navbar-header{
+    width: 270px;
+  }
+
+  .interfaz .cabecera .navbar-header:before{
+    height: 92px;
+    right: -290px;
+  }
+
+  .interfaz .cabecera .navbar-nav li{
+    margin-right: 5px;
+  }
+
   .interfaz .cabecera .navbar-nav li a{
-    font-size: 16px;
+    font-size: 15px;
+    height: 80px;
+    line-height: 80px;
+  }
+
+  .interfaz .cabecera .navbar-nav.navbar-right li{
+    margin-right: 5px;
   }
 
   .interfaz .cabecera .navbar-nav.navbar-right a{
-    font-size: 16px;
+    font-size: 15px;
     height: 42px;
     line-height: 40px;
-    width: 135px;
+    width: 110px;
+    padding: 0 10px;
   }
 
   .interfaz .mainHero{
@@ -2325,6 +3061,10 @@ body.Logged .modal .modal-dialog .modal-content{
   .interfaz .contactanos .copy p{
     font-size: 18px;
   }
+
+  .interfaz .main-internal-page.cash .nopad .white-card .easycash h2{
+    min-height: 52px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px){
@@ -2365,30 +3105,32 @@ body.Logged .modal .modal-dialog .modal-content{
     padding: 0;
   }
 
-  .interfaz .mainHero .form form fieldset{
-    width: 420px;
-    padding: 80px 40px;
-  }
-
-  .interfaz .mainHero .form form fieldset h2{
-    font-size: 26px;
-  }
-
-  .interfaz .mainHero .form.verde form fieldset{
-    width: 420px;
-    padding: 60px 30px;
+  .interfaz .mainHero .form .formato fieldset{
+    margin: 25px auto 0 auto;
   }
 
   .interfaz .mainHero .info{
-    padding: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .interfaz .mainHero .info .sociales{
+    width: 190px;
+    float: none!important;
+    margin: 0 auto;
+  }
+
+  .interfaz .mainHero .info .sociales li{
+    float: left;
+    padding: 0 25px;
+  }
+
+  .interfaz .mainHero .info .copy{
+    padding-right: 25px;
   }
 
   .interfaz .mainHero .info .copy h1{
     font-size: 30px;
-  }
-
-  .interfaz .mainHero .info .copy h1:after{
-    right: -100px;
   }
 
   .interfaz .mainHero .info .copy h2{
@@ -2417,7 +3159,7 @@ body.Logged .modal .modal-dialog .modal-content{
     width: 230px;
     height: 230px;
   }
-
+   
   .interfaz .paylessSteps .payless ol{
     padding: 5px 0;
   }

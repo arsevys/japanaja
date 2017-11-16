@@ -8,6 +8,9 @@ var path=require('path');
 var ejs= require('ejs');
 var morgan = require('morgan');
 var cors=require('cors');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+var fs=require("fs");
 // var rfs=require('rotating-file-stream');
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
@@ -18,6 +21,7 @@ var passport = require("passport");
 var Strategy = require('passport-facebook').Strategy; 
 var connectionFB = require("./Modelo/FB.js");
 var Operaciones=require('./Controlador/Operaciones');
+var OperacionesAdministrador=require('./Controlador/OperacionesAdministrador');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
@@ -44,6 +48,7 @@ app.use(session({secret:"disruptia",resave:true,saveUninitialized:true}));
 app.set('view engine','ejs');
 app.set('views',__dirname+"/public");
 app.use(express.static(path.join(__dirname,"public")));//especifica 
+
 passport.serializeUser(function(user, cb) {
   cb(null, user);
 });
@@ -53,19 +58,25 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 
-var s = "http://graph.facebook.com/1394296637357195/picture";
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 //Peticiones GET
 app.get('/registrar/facebook',passport.authenticate('facebook'));
+
 app.get('/',function(req,res){
 
+ req.session.url = "/";
+
 	if(req.session.ide){
+    var notificacion = require('./Modelo/notficaciones.js');
+    notificacion.verificacionderespuestatiempo(req.session.ide);
+   notificacion.verificaciondetiempo(req.session.ide);
+
 	res.render('index',req.session.config);	
  
-	return;}
+	return;
+ }
 
 
 	const config={
@@ -77,7 +88,10 @@ app.get('/',function(req,res){
 
 	res.render('index',config);
   res.end();
+  
 });
+
+
 app.get('/registrar/facebook/return', 
    passport.authenticate('facebook', { failureRedirect: '/' }),
    function(req, res) {
@@ -96,13 +110,17 @@ app.get('/registrar/facebook/return',
                 }
 
 
-           res.redirect('/');   
+           res.redirect( req.session.url );   
     });
 });
+
+app.get('/masopciones',Secundarios.MasOpciones);
+app.get('/notificaciones',Primario.notificaciones);
 app.get('/Nosotros',Secundarios.Nosotros);
 app.get('/MisPropuestas',Primario.MisPropuestas);
 app.get('/QuieroAhorrar',Primario.PublicarAhorro);
 app.get('/QuieroEfectivo',Primario.ElegirAhorro);
+app.get('/MisDatos',Primario.MisDatos);
 app.get('/signup',Primario.CerrarSession);
 app.get('/login',(req,res)=>{
 
@@ -122,7 +140,36 @@ app.post('/login',Logeo.login);
 app.post('/register',Logeo.registrar);
 app.post('/PublicarAhorro',Operaciones.PublicarOpcion)
 
+app.get('/propuesta',Primario.lanzarOpcion);
 
+app.get('/filtros',Primario.filtro);
+app.get('/registrarPropuesta',Secundarios.guardarpropuesta);
+
+//aqui para una consulta de un estado de un recibo publicado
+app.get('/EstadoRecibo/:id',Primario.MostrarEstadoRecibo);
+/*aqui para una consulta de un estado de un recibo publicado*/
+app.get('/EstadoPropuesta/:id',Primario.MostrarEstadoPropuesta);
+
+/*aqui guardar datos de los usuarios*/
+app.post("/GuardarDatos",Operaciones.GuardarDatos);
+
+/*aqui se acualisa de paso 2 a paso 3 el recibo de los pasos*/
+app.post("/ActualisarRecibo",Operaciones.ActualisarPaso2A3Recibos);
+
+app.post("/ConfirmarDeposito",Operaciones.ConfirmarDeposito);
+
+/**/
+app.post("/CancelarRecibo",Operaciones.CancelarRecibo);
+
+/*Peticiones lado Administrador*/
+app.get("/AdminConfirmarDepositoRecibo",OperacionesAdministrador.ConfirmarDeposito);
+app.get("/GeneraTransaccion",OperacionesAdministrador.ConfirmarVoucherGenerarTransaccion);
+
+
+
+/*subir imagen del boucher*/
+
+app.post("/SubirImg",multipartMiddleware,Operaciones.SubirImagen);
 
 app.listen(puerto,function(){
     console.log("el servidor se esta ejecutando");

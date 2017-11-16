@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Título</title>
+    <title><%= name%></title>
     <meta name="title" content="Titulo de la página: entre 55 caracteres">
     <meta name="description" content="La descripción: entre 155 caracteres">
     <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="language" content="es">
     <meta name="robots" content="index,follow">
+    <script src="../Complementos/js/quieroefectivo.js"></script>
     <link rel="stylesheet" href="../Complementos/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="../Complementos/css/jpnj.css">
@@ -23,7 +24,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="notLogged internal sec">
+  <body class="<%= logeadoClass%> home main">
   	<!--[if lt IE 8]>
     	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -43,168 +44,187 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="">Quiero efectivo</a></li>
+                        <li><a href="">Quiero ahorrar</a></li>
+                        <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
+
+
+
+                    <!-- para loger -->
                     <ul class="nav navbar-nav navbar-right">
+
+                       <%# aqui para los no logear%>
+                       <% if(logeado==false){%>
                         <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
-                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro">regístrate</a></li>
+                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro" onclick="limpiarRegistrar()">regístrate</a></li>
+
+                           <% } else {%>
+
+                        <%# aqui para logear%>
+
+                        
                         <li class="dropdown Logged">
                             <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
-                                <span class="sinleer">88</span>
+                                <span class="sinleer">58</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Mis propuestas</a></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </li>
+
+
+
+
+         <li class="Logged">
+                            <a href="#" class="dropdown-toggle alertas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">alertas <span class="sinleer">1</span></a>
+                            <ul class="dropdown-menu">
+                                <li>ds</li>
+                                <li>ds</li>
+                                <li>sd</li>
+                                <li>ds</li>
+                                <li></li>
+                            </ul>
+
+                        </li>
+
+                        <li class="Logged dropdown">
+                            
+                             <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <figure>
+                                    <img src="<%= perfil %>" alt="">
+                                </figure>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
+                                <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
+                                <li><a href="/MisPropuestas">Mis propuestas</a></li>
                                 <li><a href="#">Mis opciones</a></li>
                                 <li><a href="#">Configuración</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <li><a href="/signup">Cerrar sesión</a></li>
                             </ul>
+
                         </li>
-                        <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                        <li class="Logged">
-                            <a href="#" class="usuario">
-                                <figure>
-                                    <img src="imagenes/avatars/avatar.png" alt="">
-                                </figure>
-                            </a>
-                        </li>
+                         <% }%>
+
+
                     </ul>
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <section class="row mainHero">
-            <div class="col-sm-7 col-md-7 form verde">
-                <form action="">
-                    <fieldset>
-                        <h1>Quiero efectivo</h1>
-                        <h2>¿Cuántos soles necesitas?</h2>
-                        <div class="buscador row">
-                            <input type="text">
-                            <p class="infor col-sm-4">
-                                <span>¿Mismo banco?</span>
-                                <input type="radio" name="banco"><label for="">SI</label>
-                                <input type="radio" name="banco"><label for="">NO</label>
-                            </p>
-                            <input type="button" class="col-sm-8" value="Buscar opciones" data-toggle="modal" data-target="#ModalOpcion">
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="col-xs-5 col-sm-5 info">
-                <ul class="sociales pull-right">
-                    <li class="facebook"><a href="#" class="face">Facebook</a></li>
-                    <li class="linkedIn"><a href="#" class="linked">Linked In</a></li>
-                    <li class="twitter"><a href="#" class="twitter">Twitter</a></li>
-                </ul>
-                <div class="copy">
-                    <h2>Obtén efectivo de forma rápida y con intereses muy bajos, pagando con tu tarjeta de crédito un servicio de otra persona que tiene efectivo</h2>
-                </div>
-            </div>
-        </section>
-        <section class="proposals">
+        <section class="main-internal-page cash">
             <div class="row nopad">
-                <div class="col-sm-7 white-card">
-                    <div class="row nopad">
-                        <div class="col-sm-4">
-                           <h2>Para pagar con tarjeta de crédito</h2>
-                           <p class="monto verde">S/ 250 <span class="decimales">.80</span></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <h2>Vencimiento</h2>
-                            <p>02-ago-17</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <h2>María</h2>
-                            <figure>
-                                <img src="imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a>2</a>
-                                <a>3</a>
-                                <a>4</a>
-                                <a>5</a>
+                <div class="col-sm-12 white-card" id="Listado">
+                    <div class="form verde">
+                        
+                            <fieldset class="row">
+                                <div class="buscador col-sm-5">
+                                    <input type="text" placeholder"500" class="col-sm-6" id="monto" onkeypress="onpress(event)">
+                                    <input type="button" onclick="consultar()"  class="col-sm-6" value="Buscar opciones">
+                                </div>
+                                <p class="infor col-sm-4">* Se muestran recibos con montos por pagar cercanos al efectivo que necesitas</p>
+                            </fieldset>
+                       
+                    </div>
+
+                    <%if(lista.length == 0){%>
+                         <center>
+                             No Hay Resultados 
+                         </center>
+                    <%
+                    }else
+                     lista.forEach((x)=>{%>
+
+                        <div class="proposals row nopad easycash" data-name="<%= x.nom_usu%>" data-fec="<%= x.fecha_opc%>" data-hora="<%= x.horafija%>" data-code="<%=x.id_opc%>" data-recom="<%=(x.mont_opc-((x.mont_opc/100)*10)).toFixed(2)%>">
+                                <div class="col-sm-3">
+                                <h2>Recibe</h2>
+                                <p class="monto bold">S/ <%=(x.mont_opc - ((x.mont_opc/100)*10)).toFixed(2)%> </p>
+                                <p class="cierre">En tu cuenta de banco</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h2>Pagando un recibo de Enel por:</h2>
+                                    <p class="monto verde">S/ <%= x.mont_opc%></p>
+                                    <p class="cierre">Con tu tarjeta de crédito</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h2>El dueño del recibo es: </h2>
+                                    <figure>
+                                        <img src="<%= x.foto_usu%>" alt="">
+                                    </figure>
+                                    <h3><%= x.nom_usu%></h3>
+                                    <div class="rating">
+                                        <%if(x.estre_usu == 100){%>
+                                                        <a class="good">1</a>
+                                                        <a class="good">2</a>
+                                                        <a class="good">3</a>
+                                                        <a class="good">4</a>
+                                                        <a class="good">5</a>
+                                                    <%}else if (x.estre_usu >= 80){%>
+                                                        <a class="good">1</a>
+                                                        <a class="good">2</a>
+                                                        <a class="good">3</a>
+                                                        <a class="good">4</a>
+                                                        <a >5</a>
+                                                    <%}else if (x.estre_usu >= 60){%>
+                                                        <a class="good">1</a>
+                                                        <a class="good">2</a>
+                                                        <a class="good">3</a>
+                                                        <a >4</a>
+                                                        <a >5</a>
+                                                    <%}else if (x.estre_usu >= 40){%>
+                                                        <a class="good">1</a>
+                                                        <a class="good">2</a>
+                                                        <a >3</a>
+                                                        <a >4</a>
+                                                        <a >5</a>
+                                                    <%}else if (x.estre_usu >= 20){%>
+                                                        <a class="good">1</a>
+                                                        <a >2</a>
+                                                        <a >3</a>
+                                                        <a >4</a>
+                                                        <a >5</a>
+                                                    <%}else{%>
+                                                        <a >1</a>
+                                                        <a >2</a>
+                                                        <a >3</a>
+                                                        <a >4</a>
+                                                        <a >5</a>
+                                                    <%}%>
+                                                
+                                    </div>
+                                    <p class="cierre blue"><%= x.tranfe_count%> transacciones</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <form>
+                                        <fieldset>
+                                            <input type="button" class="btn azul" value="¡Quiero el efectivo!" data-toggle="modal" data-target="#ModalPropuesta">
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 white-card">
-                    <div class="row nopad">
-                        <div class="col-sm-6">
-                            <h2>Propuesta sugerida</h2>
-                            <p class="monto verde">S/ 250<span class="decimales">.80</span></p>
-                        </div>
-                        <div class="col-sm-6">
-                            <h2>Escribe tu propuesta</h2>
-                            <form action="">
-                                <fieldset>
-                                    <input type="text">
-                                    <input type="button" value="Proponer ahora">
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
+
+                    <%})%>
+
+
                 </div>
             </div>
         </section>
-        <section class="proposals">
-            <div class="row nopad">
-                <div class="col-sm-7 white-card">
-                    <div class="row nopad">
-                        <div class="col-sm-4">
-                           <h2>Para pagar con tarjeta de crédito</h2>
-                           <p class="monto verde">S/ 250 <span class="decimales">.80</span></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <h2>Vencimiento</h2>
-                            <p>02-ago-17</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <h2>María</h2>
-                            <figure>
-                                <img src="imagenes/avatars/avatar.png" alt="">
-                            </figure>
-                            <div class="rating">
-                                <a class="good">1</a>
-                                <a>2</a>
-                                <a>3</a>
-                                <a>4</a>
-                                <a>5</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 white-card">
-                    <div class="row nopad">
-                        <div class="col-sm-6">
-                            <h2>Propuesta sugerida</h2>
-                            <p class="monto">S/ 250<span class="decimales">.80</span></p>
-                        </div>
-                        <div class="col-sm-6">
-                            <h2>Escribe tu propuesta</h2>
-                            <form action="">
-                                <fieldset>
-                                    <input type="text">
-                                    <input type="button" value="Proponer ahora">
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+    <div class="container interfaz">
         <section class="contactanos">
             <div class="copy">
                 <h1>
                     ¿Tienes alguna duda adicional?
                 </h1>
                 <p>Si todavía tienes dudas, envíanos un mensaje a nuestro Facebook con tu consulta y te responderemos al instante, <a href="">clic aquí</a></p>
-                <ul class="sociales">
-                    <li><a href="#" class="face">Facebook</a></li>
-                    <li><a href="#" class="linked">LinkedIn</a></li>
-                    <li><a href="#" class="twitter">Twitter</a></li>
-                </ul>
             </div>
         </section>
     </div>
@@ -215,8 +235,120 @@
                 <li><a href="">Política de privacidad</a></li>
                 <li><a href="">Libro de Reclamaciones</a></li>
             </ul>
+            <ul class="sociales">
+                <li><a href="#" class="face">Facebook</a></li>
+                <li><a href="#" class="linked">LinkedIn</a></li>
+                <li><a href="#" class="twitter">Twitter</a></li>
+            </ul>
         </section>
     </footer>
+<!-- Modal -->
+<div class="modal fade modal-propuesta" id="ModalPropuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="cierre" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body center">
+                <form action="">
+                    <div class="row nopad easycash">
+                        <div class="col-sm-6">
+                            <h2>Paga su recibo de:</h2>
+                            <p class="monto bold">S/ 280 <span class="decimales">.50</span></p>
+                            <p class="cierre">Usando tu tarjeta de crédito</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>y recibe a cambio:</h2>
+                            <p class="monto verde">S/ 270 <span class="decimales">.00</span></p>
+                            <p class="cierre">En efectivo</p>
+                        </div>
+                    </div>
+                    <h3>Elige la cuenta donde deseas que te depositemos</h3>
+                    <fieldset>
+                        <label for="">Banco:</label>
+                        <select  id="cuentas">
+                               <%cuentas.forEach((x)=>{%>
+                                <option value=""><%= x.num_cuenta + " " + x.nom_banco%> </option>
+                                <%})%>
+                        </select>
+                        <input type="button" value="Enviar propuesta" onclick="lanzarpropuesta()">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="activemodal"  data-toggle="modal" data-target="#ModalConfirmacion"  ></a>
+
+<div class="modal fade modal-ok" id="ModalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Tu propuesta fue enviada exitosamente</h4>
+      </div>
+      <div class="modal-body center">
+        <p>Recibirás una notificación en caso Alberto acepte tu propuesta, a mas tardar el 18/07 a las 3:05 pm</p>
+        <form action="">
+            <input type="button" value="aceptar">
+        </form>
+        </div>
+        <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<a href="#" id="active"  data-toggle="modal" data-target="#ModalAlerta"  ></a>
+
+<div class="modal fade" id="ModalAlerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" style="border:solid 1px red">
+        <div class="modal-header">
+             <h4 class="modal-title" id="myModalLabel" style="color:tomato">Monto Invalido</h4>
+        </div>
+        <div class="modal-body center">
+            <p style="font-size:1.2em"></p>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+<a href="#" id="activerespuesta"  data-toggle="modal" data-target="#ModalRespuesta"  ></a>
+
+<div class="modal fade" id="ModalRespuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" style="border:solid 1px #2B5BD4">
+        <div class="modal-header">
+             <h4 class="modal-title" id="myModalLabel" style="color:#3D48C2">Monto Invalido</h4>
+        </div>
+        <div class="modal-body center">
+            <p style="font-size:1.2em"></p>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="ModalInicioSesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -227,13 +359,15 @@
       </div>
       <div class="modal-body center">
         <form action="">
-        <input type="button" class="faceBtn" value="Continuar con facebook">
+        <a href="/registrar/facebook"><input type="button" class="faceBtn" value="Continuar con facebook"></a>
         <fieldset>
             <legend>o utiliza tu correo para iniciar sesión</legend>
-            <input type="text" placeholder="Correo">
-            <input type="password" placeholder="Contraseña">
-            <p>olidaste tu contraseña, <a href="">haz clic aquí</a></p>
-            <input type="button" value="Iniciar Sesión">
+            <input type="text"  name="correolog" placeholder="Correo">
+            <input type="password" name="contralog"  placeholder="Contraseña">
+            <p>¿Olvidaste tu contraseña?, <a href="">haz clic aquí</a></p>
+            <span name="errIngreso"></span><br>
+
+            <input type="button" name="login" value="Iniciar Sesión">
         </fieldset>
         </form>
         </div>
@@ -253,16 +387,21 @@
       </div>
       <div class="modal-body center">
         <form action="">
-        <input type="button" class="faceBtn" value="Continuar con facebook">
+        <a href="/registrar/facebook">
+            <input type="button" class="faceBtn" value="Continuar con facebook">
+        </a>
         <fieldset>
             <legend>regístrate</legend>
-            <input type="text" placeholder="Correo">
-            <input type="password" placeholder="Contraseña">
-            <input type="text" placeholder="Nombre completo (como figura en el DNI)">
-            <input type="text" placeholder="DNI">
-            <input type="text" placeholder="Celular">
-            <input type="button" value="Registrarme">
+            <input type="text"  name="correo" placeholder="Correo">
+            <input type="password"  name="comtra" placeholder="Contraseña">
+            <input type="text" name="nom"  placeholder="Nombre">
+            <input type="text"  name="ape" placeholder="Apellidos">
+            <input type="text"  name="dni" placeholder="DNI">
+            <input type="text" name="cel"  placeholder="Celular">
+            <input type="button"  name="enviar"  value="Registrarme"><br>
+            <span class="aviso">dasda</span>
         </fieldset>
+
         </form>
         </div>
         <div class="modal-footer">
@@ -271,67 +410,8 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="ModalOpcion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header small">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title small" id="myModalLabel">Información de la opción</h4>
-      </div>
-      <div class="modal-body center">
-        <form action="">
-            <div class="white-card">
-                <div class="row nopad">
-                    <div class="col-sm-4">
-                        <figure>
-                            <img src="imagenes/avatars/avatar.png" alt="">
-                        </figure>
-                        <div class="rating">
-                            <a class="good">1</a>
-                            <a>2</a>
-                            <a>3</a>
-                            <a>4</a>
-                            <a>5</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                       <h2>Para pagar con tarjeta de crédito</h2>
-                       <p class="monto verde">S/ 280 <span class="decimales">.80</span></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <h2>Vencimiento</h2>
-                        <p class="small">en 08:23:45</p>
-                    </div>
-                </div>
-            </div>
-            <div class="tu-propuesta row-fluid clearfix">
-                <div class="col-sm-5">
-                    <label for="">Tu propuesta</label>
-                    <input type="text" placeholder="S/ 280">
-                </div>
-                <div class="col-sm-7">
-                    <label for="">Elige una cuenta para el depósito</label>
-                    <select name="" id="">
-                        <option value="">cta - cte - interbank 1452 1452 1459</option>
-                        <option value="">cta - cte - interbank 7897 7897 7891</option>
-                    </select>
-                </div>
-            </div>
-            <input type="button" value="Lanza tu propuesta">
-        </form>
-        </div>
-        <div class="modal-footer gris">
-            <p><strong>¿Qué sigue luego?</strong></p>
-            <p>Tu propuesta competirá con otras y sólo una será elegida. En caso tu propuesta sea elegida deberás realizar lo siguiente:</p>
-            <div class="row-fluid">
-                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Pagar con tu tarjeta</strong></p></div>
-                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Confirmar el pago</strong></p></div>
-                <div class="col-sm-4"><img src="imagenes/avatars/avatar.png" alt=""><p><strong>Recibir tu efectivo</strong></p></div>
-            </div>
-        </div>
-    </div>
-  </div>
-</div>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

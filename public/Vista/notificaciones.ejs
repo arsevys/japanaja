@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Notificaciones</title>
+        <meta name="title" content="Titulo de la página: entre 55 caracteres">
+        <meta name="description" content="La descripción: entre 155 caracteres">
+        <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
+        <meta name="author" content="autor de la pagina">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="language" content="es">
+        <meta name="robots" content="index,follow">
+        <link rel="stylesheet" href="../Complementos/css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="../Complementos/css/jpnj.css">
+        <link rel="stylesheet" type="text/css" href="../Complementos/css/notificaciones.css">
+          <link rel="stylesheet" href="../Complementos/style.css"></head>
+  </head>
+  <body class="Logged home main">
+
+        <div class="container interfaz">
+         <nav class="navbar navbar-default cabecera">
+            <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logo" href="#">JAPANAJA</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="">Quiero efectivo</a></li>
+                        <li><a href="">Quiero ahorrar</a></li>
+                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Ayuda</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <%if(!logeado){%>
+                           <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
+                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro">regístrate</a></li>
+                         <%}else{%>
+                             
+                            <li class="dropdown Logged">
+                                <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
+                                    <span class="sinleer">88</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
+                                    <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
+                                    <li><a href="/MisPropuestas">Mis propuestas</a></li>
+                                    <li><a href="#">Mis opciones</a></li>
+                                    <li><a href="#">Configuración</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/signup">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                            <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
+                            <li class="Logged">
+                                <a href="#" class="usuario">
+                                    <figure>
+                                        <img src="<%= perfil %>" alt="">
+                                    </figure>
+                                </a>
+                            </li>
+                         <%}%>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+         </nav>
+            <section class="main-internal-page cash">
+                <div class="row nopad">
+                    <div class="col-sm-12 white-card" id="notificacion">
+
+                         <center>
+                             <h1>Notificaciones</h1>
+                         </center>
+
+                        <div class="col-md-6" id="buscador">
+                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            
+                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Buscar">
+                            <div class="input-group-addon"><span class="icon-search"></span></div>
+                          </div>
+                           <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                         
+                        </div>
+                        
+                        <div class="row" id="noti">
+
+                            <%notificaciones.forEach((x)=>{%>
+
+                                 <div class="col-md-12">
+
+                                       
+                                    <%if(x.id_tn == 1){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu Propuesta Sobre el recibo de <%=x.nomusuopc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                      var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p>Realizaste una propuesta sobre el recibo de <%= x.nom_tipo %> de <%=x.nomusuopc%> de <strong>S/. <%= x.mont_opc%></strong> y acambio de  recibiras
+                                             <strong>S/ <%= x.mont_opc - (x.mont_opc * 0.1) %></strong> de efectivo en tu cuenta. <%=x.nomusuopc%> tiene hasta el 
+                                             <%
+                                                    var y = x.fecha_opc.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+
+                                                     if(dt > 12){ 
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                     }
+                                                      else if(dt == 12){
+                                                       
+                                                         w[0] = 12 ;               
+                                                          dt = 'pm';   
+
+                                                   }
+                                                     else {
+                                                        dt = 'am';
+                                                     }
+
+                                                     var f = parseInt(z[2]) + 1;
+
+                                                    var fc = f+'/'+z[1]+' '+w[0]+':'+w[1]+' '+dt;
+                                             %>
+                                             <%=fc%> para aceptar tu propuesta.Puedes revisar el avance haciendo <a href="">click aqui</a></p>
+                                        </div>
+                                    <%}%>
+
+
+                                       
+                                    <%if(x.id_tn == 2){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu recibo de <%=x.nom_tipo%> por S/.<%=x.mont_opc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes ){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt > 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                  else if(dt == 12){
+                                                       
+                                                         w[0] = 12 ;               
+                                                          dt = 'pm';   
+
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p>Tu recibo de servicio de <%= x.nom_tipo %> por <strong>S/. <%=x.mont_opc%></strong>, recibio una propuesta 
+                                                de <%=x.nomusupro%>.Revisar el estatus haciendo <a href="">click aqui</a></p>
+                                        </div>
+                                    <%}%>
+                                    
+
+                                     <%if(x.id_tn == 3){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu recibo de <%=x.nom_tipo%> por S/.<%=x.mont_opc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p>Tu recibo de servicio de <%= x.nom_tipo %> por <strong>S/. <%=x.mont_opc%></strong> se ha publicado 
+                                                satisfactoriamente .Recuerda que este recibo se cerrara automaticamente mañana a las
+                                                <%
+                                                   var y = x.fecha_opc.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt > 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                   else if(dt == 12){
+                                                       
+                                                         w[0] = 12 ;               
+                                                          dt = 'pm';   
+
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+                                                     }
+                                                %> 
+                                                <%= w[0]+':'+w[1]+' '+dt%>.Revisar el estatus haciendo <a href="">click aqui</a></p>
+                                        </div>
+                                    <%}%>
+
+
+                                      <%if(x.id_tn == 4){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu propuesta sobre el recibo de <%=x.nomusuopc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p> Felicitaciones! <%= x.nomusuopc%> aceptó tu propuesta de pago de su recibo de <%= x.nom_tipo%> por <strong>S/. <%=x.mont_opc%></strong>.
+                                                <%= x.nomusuopc%> tiene 2 horas para realizar el deposito de los <strong>S/. <%= x.mont_opc - (x.mont_opc * 0.1) %></strong> a la cuenta 
+                                                de Japanajá. Te notificaremos cuando tengamos el efectivo para depositarlo en tu cuenta siempre y cuando confirme la cancelacion del recibo.
+                                                </p>
+                                        </div>
+                                    <%}%>
+
+                                    <%if(x.id_tn == 5){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu recibo de <%=x.nomtipo%> por <%=x.mont_opc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p> Tu recibo de servicio de <%= x.nom_tipo%> finalizo automaticamente luego
+                                                de 24 horas.</p>
+                                        </div>
+                                    <%}%>
+
+                                    <%if(x.id_tn == 6){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu propuesta sobre el recibo de <%=x.nomusuopc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p> Lo sentimos , no hemos tenido respuesta alguna de <%=x.nomusuopc%> acerca del recibo de <%= x.nom_tipo%> por <%= x.mont_opc%> y se vencio el tiempo limite 
+                                             para seleccionar una propuesta .
+                                            </p>
+                                        </div>
+                                    <%}%>
+ 
+ 
+
+                                </div>
+                                
+
+                            <%})%>
+ 
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="container interfaz">
+            <section class="contactanos">
+                <div class="copy">
+                    <h1>
+                        ¿Tienes alguna duda adicional?
+                    </h1>
+                    <p>Si todavía tienes dudas, envíanos un mensaje a nuestro Facebook con tu consulta y te responderemos al instante, <a href="">clic aquí</a></p>
+                </div>
+            </section>
+        </div>
+        <footer class="container pie">
+            <section>
+                <ul>
+                    <li><a href="">Términos y condiciones</a></li>
+                    <li><a href="">Política de privacidad</a></li>
+                    <li><a href="">Libro de Reclamaciones</a></li>
+                </ul>
+                <ul class="sociales">
+                    <li><a href="#" class="face">Facebook</a></li>
+                    <li><a href="#" class="linked">LinkedIn</a></li>
+                    <li><a href="#" class="twitter">Twitter</a></li>
+                </ul>
+            </section>
+        </footer>
+     
+        <div class="modal fade modal-ok" id="ModalPropuesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Felicitaciones</h4>
+                      </div>
+                      <div class="modal-body center">
+                        <p>Ahorraste S/ 5.35 en esta transacción y tienes un ahorro acumulado de S/ 50.20</p>
+                        <form action="">
+                            <input type="button" value="aceptar" class="green">
+                        </form>
+                        </div>
+                        <div class="modal-footer">
+                      </div>
+                    </div>
+              </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+
+  </body>
+</html>

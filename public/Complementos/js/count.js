@@ -39,7 +39,7 @@ var temporizador=setInterval(()=>{
 	           continue;
            }
            }
-          
+          4
 		},1000);
 
 

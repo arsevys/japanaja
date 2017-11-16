@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><%= name %></title>
+    <title>Título</title>
     <meta name="title" content="Titulo de la página: entre 55 caracteres">
     <meta name="description" content="La descripción: entre 155 caracteres">
     <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="language" content="es">
     <meta name="robots" content="index,follow">
-    <link rel="stylesheet" href="../Complementos/css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="../Complementos/css/jpnj.css">
+    <link rel="stylesheet" href="css/jpnj.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,7 +23,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="<%= logeadoClass%> internal sec">
+  <body class="notLogged home main">
   	<!--[if lt IE 8]>
     	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -43,6 +43,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        <li><a href="">Quiero efectivo</a></li>
+                        <li><a href="">Quiero ahorrar</a></li>
                         <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
@@ -62,107 +64,145 @@
                             </ul>
                         </li>
                         <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                        <li class="Logged dropdown">
-                                    
-                                     <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <figure>
-                                            <img src="<%= perfil %>" alt="">
-                                        </figure>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
-                                            <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
-                                            <li><a href="/MisPropuestas">Mis propuestas</a></li>
-                                            <li><a href="#">Mis opciones</a></li>
-                                            <li><a href="#">Configuración</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="/signup">Cerrar sesión</a></li>
-                                        </ul>
-
-                        </li><!--termina elde perf -->
+                        <li class="Logged">
+                            <a href="#" class="usuario">
+                                <figure>
+                                    <img src="imagenes/avatars/avatar.png" alt="">
+                                </figure>
+                            </a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <section class="row mainHero">
-            <div class="col-sm-7 form verde">
-                <div class="formato">
-                    <fieldset>
-                        <h1>Quiero ahorrar</h1>
-                        <h2>¿Que servicio quieres pagar?</h2>
-                        <div class="buscador row">
-                            <select name="" id="" class="col-sm-12">
-                                <% for(var i=0;tipos.length>i;i++){%>
-                                <option value="<%= tipos[i].id_tipo %>"><%= tipos[i].tipo_tipo %> - <%= tipos[i].nom_tipo %></option>
-                                <% }%>
-                            </select>
-                            <p class="infor col-sm-4">Máximo 600 soles</p>
-                            <input onclick="limpiar()" type="button" class="col-sm-8" value="Quiero ahorrar en el pago" data-toggle="modal" data-target="#ModalPublicar">
+        <section class="main-internal-page cash">
+            <div class="row nopad">
+                <div class="col-sm-12 white-card">
+                    <div class="form verde">
+                        <form action="">
+                            <fieldset class="row">
+                                <h1>¿Cuánto efectivo necesitas? *</h1>
+                                <div class="buscador col-sm-5">
+                                    <input type="text" placeholder"500" class="col-sm-6" >
+                                    <input type="button" class="col-sm-6" value="Buscar opciones" data-toggle="modal" data-target="#ModalOpcion">
+                                </div>
+                                <p class="infor col-sm-4">*Se muestran recibos con montos por pagar cercanos al efectivo que necesitas</p>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="row nopad easycash">
+                        <div class="col-sm-3">
+                           <h2>Recibe</h2>
+                           <p class="monto bold">S/ 270 <span class="decimales">.00</span></p>
+                           <p class="cierre">En tu cuenta de banco</p>
                         </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-sm-5 info">
-                <ul class="sociales pull-right">
-                    <li class="facebook"><a href="#" class="face">Facebook</a></li>
-                    <li class="linkedIn"><a href="#" class="linked">Linked In</a></li>
-                    <li class="twitter"><a href="#" class="twitter">Twitter</a></li>
-                </ul>
-                <div class="copy">
-                    <h2>Ahorra en tus recibos de servicios, gracias al poder de la colaboración</h2>
-                    <p>En japanajá podrás ahorra en los pagos de tus servicios. Sólo publicalos y otra persona los pagará y costará menos. ¿Suena demasiado bueno para ser verdad?, <a href="#">aquí te explicamos cómo.</a></p>
+                        <div class="col-sm-3">
+                            <h2>Pagando un recibo de Enel por:</h2>
+                            <p class="monto verde">S/ 280 <span class="decimales">.50</span></p>
+                            <p class="cierre">En tu cuenta de banco</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h2>El dueño del recibo es:</h2>
+                            <figure>
+                                <img src="imagenes/avatars/avatar.png" alt="">
+                            </figure>
+                            <h3>María</h3>
+                            <div class="rating">
+                                <a class="good">1</a>
+                                <a>2</a>
+                                <a>3</a>
+                                <a>4</a>
+                                <a>5</a>
+                            </div>
+                            <p class="cierre blue">32 transacciones</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <form action="">
+                                <fieldset>
+                                    <input type="button" class="btn azul" value="¡Quiero el efectivo!">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row nopad easycash">
+                        <div class="col-sm-3">
+                           <h2>Recibe</h2>
+                           <p class="monto bold">S/ 270 <span class="decimales">.00</span></p>
+                           <p class="cierre">En tu cuenta de banco</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h2>Pagando un recibo de Enel por:</h2>
+                            <p class="monto verde">S/ 280 <span class="decimales">.50</span></p>
+                            <p class="cierre">En tu cuenta de banco</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h2>El dueño del recibo es:</h2>
+                            <figure>
+                                <img src="imagenes/avatars/avatar.png" alt="">
+                            </figure>
+                            <h3>María</h3>
+                            <div class="rating">
+                                <a class="good">1</a>
+                                <a>2</a>
+                                <a>3</a>
+                                <a>4</a>
+                                <a>5</a>
+                            </div>
+                            <p class="cierre blue">25 transacciones</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <form action="">
+                                <fieldset>
+                                    <input type="button" class="btn azul" value="¡Quiero el efectivo!">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row nopad easycash">
+                        <div class="col-sm-3">
+                           <h2>Recibe</h2>
+                           <p class="monto bold">S/ 270 <span class="decimales">.00</span></p>
+                           <p class="cierre">En tu cuenta de banco</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h2>Pagando un recibo de Enel por:</h2>
+                            <p class="monto verde">S/ 280 <span class="decimales">.50</span></p>
+                            <p class="cierre">En tu cuenta de banco</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h2>El dueño del recibo es:</h2>
+                            <figure>
+                                <img src="imagenes/avatars/avatar.png" alt="">
+                            </figure>
+                            <h3>María</h3>
+                            <div class="rating">
+                                <a class="good">1</a>
+                                <a>2</a>
+                                <a>3</a>
+                                <a>4</a>
+                                <a>5</a>
+                            </div>
+                            <p class="cierre blue">20 transacciones</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <form action="">
+                                <fieldset>
+                                    <input type="button" class="btn azul" value="¡Quiero el efectivo!">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="counters">
-            <div class="white-card">
-                <header>
-                    <h1>
-                        Muchas personas ya están ahorrando con Japanajá, tu también puedes
-                    </h1>
-                </header>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Opciones</dt>
-                            <dd>
-                                <span class="count">34</span>
-                                <span class="description">opciones activas</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Operaciones</dt>
-                            <dd>
-                                <span class="count">250</span>
-                                <span class="description">operaciones realizadas</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-4">
-                        <dl>
-                            <dt>Servicios pagados</dt>
-                            <dd>
-                                S/ <span class="count">12443</span>
-                                <span class="description">Soles en servicios pagados</span>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+    <div class="container interfaz">
         <section class="contactanos">
             <div class="copy">
                 <h1>
                     ¿Tienes alguna duda adicional?
                 </h1>
                 <p>Si todavía tienes dudas, envíanos un mensaje a nuestro Facebook con tu consulta y te responderemos al instante, <a href="">clic aquí</a></p>
-                <ul class="sociales">
-                    <li><a href="#" class="face">Facebook</a></li>
-                    <li><a href="#" class="linked">LinkedIn</a></li>
-                    <li><a href="#" class="twitter">Twitter</a></li>
-                </ul>
             </div>
         </section>
     </div>
@@ -172,6 +212,11 @@
                 <li><a href="">Términos y condiciones</a></li>
                 <li><a href="">Política de privacidad</a></li>
                 <li><a href="">Libro de Reclamaciones</a></li>
+            </ul>
+            <ul class="sociales">
+                <li><a href="#" class="face">Facebook</a></li>
+                <li><a href="#" class="linked">LinkedIn</a></li>
+                <li><a href="#" class="twitter">Twitter</a></li>
             </ul>
         </section>
     </footer>
@@ -229,46 +274,10 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="ModalPublicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content small">
-            <div class="modal-header">
-                <button type="button" class="close closeM" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Completa los datos para publicar tu opción</h4>
-            </div>
-            <div class="modal-body center">
-                <form action="">
-                    <fieldset class="row">
-                        <select name="" id="tipos">
-                            <% for(var i=0;tipos.length>i;i++){%>
-                                <option value="<%= tipos[i].id_tipo %>"><%= tipos[i].tipo_tipo %> - <%= tipos[i].nom_tipo %></option>
-                                <% }%>option>
-                        </select>
-                        <input type="text" name="codsum" class="help" placeholder="Código de suministro">
-                        <a class="tooltip">info</a>
-                        <input type="text" name="monto" class="help" placeholder="Monto pendiente del total del recibo" >
-                        <a class="tooltip">info</a>
-                        <div class="botonera clearfix">
-                            <input type="button" value="cancelar" class="azul">
-                            <input type="button" value="publicar opción" class="pull-right azul PO">
-                        </div><br>
-                        <span class="errPO"></span>
-                    </fieldset>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal-alert">
-        <h3>Solo unos minutos antes de publicar tu oferta</h3>
-        <p>Para evitar cualquier inconveniente, vamos a validar el monto a pagar en la banca por internet, en caso exista alguna diferencia te avisaremos para que puedas corregirla.</p>
-    </div>
-</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../Complementos/js/bootstrap.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script>
         //contador
         $('.count').each(function () {
@@ -293,6 +302,5 @@
                 myVideo.pause(); 
         } 
     </script>
-    <script type="text/javascript" src="../Complementos/js/publicar.js"></script>
   </body>
 </html>
