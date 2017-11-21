@@ -1,11 +1,5 @@
 var pg=require('pg');
-const config={
-	host:'localhost',
-	user:'postgres',
-	database:'japanaja',
-	port:'5432',
-	password:'andy'
-}
+var config=require("./../configBD.json");
 var pool=new pg.Pool(config);
 
 class Operaciones {
@@ -53,7 +47,7 @@ static InsertarOpciones(id,i,callback){
      		let parametros=[id,i.monto,'45646645',i.tipo,i.codsum];
      		
      		client.query(sql,parametros,(err,data)=>{
-     			
+     			done();
      			if(err){
             console.log(err);
             callback(err,null);return;
@@ -126,7 +120,7 @@ static CargarPropuestasxUsuario(id,callback){
           let parametros=[id];
           client.query(sql,parametros,(err,data)=>{
           if(err){console.log(err);return;}
-
+        done();
           return callback(null,data.rows);
 
           })
@@ -156,7 +150,7 @@ static CargarPropuestasCompletadosxUsuario(id,callback){
           let parametros=[id];
           client.query(sql,parametros,(err,data)=>{
           if(err){console.log(err);return;}
-
+          done();
           return callback(null,data.rows);
 
           })
@@ -184,7 +178,7 @@ static CargarOpcionesCompletadosxUsuario(id,callback){
           let parametros=[id];
           client.query(sql,parametros,(err,data)=>{
           if(err){console.log(err);return;}
-
+         done();
           return callback(null,data.rows);
 
           })
@@ -258,10 +252,11 @@ static mostraropciones(object,callback) {
                 " where u.id_usu = $1";
 
               client.query(query,[id],(err,dato)=>{
-
+     
                     if(err ||  dato.rows.length == 0){
                           return callback([{num_cuenta : 'NO HAY NINGUN ',nom_banco:'NUMERO DE CUENTA'}]);
                      }
+                     done();
                            
                       return callback(dato.rows);
 
@@ -343,7 +338,9 @@ static lanzarPropuesta(json,callback){
       opciones as opc 
       where opc.id_opc=$1 and opc.id_usu=$2 `;
       client.query(sql,[x,ideusu],(err,data)=>{
+       done();
         if(err){console.log(err);return;}
+
         return callback(null,data.rows)
       })
     })
@@ -351,13 +348,21 @@ static lanzarPropuesta(json,callback){
 
 
 static actualisarDatos(j,callback){
+  console.log(j);
+  
   pool.connect(function(err,client,done){
     let consulta=`update usuarios
-    set nom_usu=$1,ape_usu=$2,cel_usu=$3,correo_usu=$4
-    where id_usu=$5
+    set nom_usu=$1,ape_usu=$2,cel_usu=$3,correo_usu=$4,dni_usu=$5
+    where id_usu=$6
     `;
-    client.query(consulta,[],(err,data)=>{
+    let aa=`
       
+    `;
+    let a=[j.nombre,j.apellidos,j.celu,j.correo,j.dni,j.ide];
+    client.query(consulta,a,(err,data)=>{
+      done();
+      if(err){console.log(e);return callback(e,null);}
+      return callback(null,data);
     });
   
   })
@@ -386,7 +391,7 @@ static ObtenerPostulantesDeUnRecibo(x,callback){
           let parametros=[x];
           client.query(sql,parametros,(err,data)=>{
           if(err){console.log(err);return;}
-
+          done();
           return callback(null,data.rows);
 
           })
@@ -419,6 +424,7 @@ static ActualisarPaso2A3Recibos(x,d,p,callback){
 
    let query=`insert into paso3Recibos(id_usu,id_opc,id_propu) values($1,$2,$3) returning id_p3r`;
    client.query(query,[x,d,p],(err,data)=>{
+    done();
    if(err){console.log(err);return callback(err,null);}  
       return callback(null,data.rows[0].id_p3r);   
    });
@@ -445,6 +451,7 @@ static MostrarDatosPaso3XRecibo(x,callback){
     where p3.id_opc=$1
     `;/*en la columna vencio N o NV*/
    client.query(query,[x],(err,c)=>{
+    done();
      if(err){console.log(err);return callback(err,false);}
        
        return callback(null,c.rows);
@@ -463,6 +470,7 @@ static ActualisarConfirmarDepositoRecibo(x,i,callback){
   where id_p3r=$2
     `;
    client.query(query,[x,i],(err,c)=>{
+    done();
      if(err){console.log(err);return callback(err,false);}
        
        return callback(null,c.rows);
@@ -484,6 +492,7 @@ static ActualisarConfirmarVoucherPropuesta(x,i,callback){
   where id_p3p=$2
     `;
    client.query(query,[x,i],(err,c)=>{
+    done();
      if(err){console.log(err);return callback(err,false);}
        
        return callback(null,c.rows);
@@ -499,7 +508,7 @@ static ActualisarConfirmarVoucherPropuesta(x,i,callback){
  static MostrarEstadoPropuesta(x,ideusu,callback){
     pool.connect((err,client,done)=>{
       let sql=`select u.nom_usu,to_char('24 hour' - ( now() at time zone 'UTC' - interval '5 hour' - opc.fecha_opc::timestamp ),'HH24:MI:SS') as hora,opc.fecha_opc,
-      to_char(opc.fecha_opc::timestamp  + '24 hour' ,'mm-dd') || ' del ' || to_char(opc.fecha_opc::timestamp + '24 hour','HH:MI AM') as fecha
+      to_char(opc.fecha_opc::timestamp  + '24 hour' ,'dd-mm-yyyy') || ' del ' || to_char(opc.fecha_opc::timestamp + '24 hour','HH:MI AM') as fecha
       , case
       when '24 hour' -(now() at time zone 'UTC' - interval '5 hour' - opc.fecha_opc::timestamp) > -interval '-00:00:00' then 'NV'
       else 'V'
@@ -511,6 +520,7 @@ static ActualisarConfirmarVoucherPropuesta(x,i,callback){
       on u.id_usu=opc.id_usu     
       where p.id_propu=$1 and p.id_usu=$2 `;
       client.query(sql,[x,ideusu],(err,data)=>{
+        done();
         if(err){console.log(err);return;}
         return callback(null,data.rows)
       })
@@ -526,6 +536,7 @@ static CancelarRecibo(x,callback){
   where id_opc=$1
     `;
    client.query(query,[x],(err,c)=>{
+    done();
      if(err){console.log(err);return callback(err,false);}
        
        return callback(null,c.rowCount);
@@ -558,6 +569,7 @@ where p.id_propu=$1 and p.id_usu=$2
 
     `;/*en la columna vencio N o NV*/
    client.query(query,[x,u],(err,c)=>{
+    done();
      if(err){console.log(err);return callback(err,false);}
        
        return callback(null,c.rows);
@@ -620,7 +632,41 @@ where p.id_propu=$1 and p.id_usu=$2
  }
 
 
+static ValidarPublicarReciboSiTieneMisDatos(x,callback){
+  pool.connect((err,client,done)=>{
+    let query=`
+       select * from usuarios where 
+       id_usu =$1 and dni_usu is null and cel_usu is null and correo_usu is null;
 
+    `;
+    client.query(query,[x],(e,d)=>{
+      done();
+     if(e){console.log(e);}
+     return callback(null,d.rows);
+    })
+  })
+}
+
+
+static ActualisarNotificacionXUsuario(x){
+  pool.connect((err,client,done)=>{
+    let query=`
+     update notificaciones 
+set est_not='V'
+where id_usu=$1;
+
+    `;
+   client.query(query,[x],(err,c)=>{
+    done();
+     if(err){console.log(err);return callback(err,false);}
+       
+   })
+
+
+
+
+  })
+}
 
 }
 

@@ -21,7 +21,9 @@ static  MisPropuestas(req,res){
       }
   		var config={
               'name':req.session.config.name||'',
-              'perfil':req.session.config.perfil
+              'perfil':req.session.config.perfil,
+              'logeado':true,
+              'logeadoClass': 'Logged'
              }; 
 
 		    Operaciones.CargarOpcionesXUsuario(req.session.ide,(err,OA)=>{
@@ -201,7 +203,7 @@ static MisDatos(req,res){
        Operaciones.CargarBancos((err,d)=>{
          datos.bancos=d;
          console.log(datos);
-         res.render(DireccionPaginas.MisDatos,datos);
+         res.status(200).render(DireccionPaginas.MisDatos,datos);
         });
   })
 }
@@ -211,7 +213,7 @@ static MostrarEstadoRecibo(req,res){
  let id=req.params.id;
   
   if(!req.session.ide){
-    res.send("NO esta logeado intentalo de nuevo");
+    res.redirect("/");
     return;
   }
 
@@ -222,7 +224,7 @@ static MostrarEstadoRecibo(req,res){
       // console.log(d);
       
      if(d.length<=0){
-        return res.send("HubofSProblemas tecnicos lo estamos resolviendo");
+        return res.status(200).send("HubofSProblemas tecnicos lo estamos resolviendo");
       }
       d=d[0];
 
@@ -245,10 +247,13 @@ static MostrarEstadoRecibo(req,res){
            "Monto":(parseFloat(d1[0].mont_opc)-parseFloat(d1[0].mont_opc)*0.025).toFixed(2),
            "Vencio":d1[0].vencio,//si es V vencio o el NV no vencio
            "FechaC":d1[0].fechac_p3r,//es la fecha cuando comfirmo el deposito
-           "NumOpe":d1[0].numope_p3r
+           "NumOpe":d1[0].numope_p3r,
+               "Sesion":req.session,
+        "Perfil":"../"+req.session.config.perfil
+    
           }
           console.log(datos);
-           res.render(DireccionPaginas.Recibo_Paso3,datos)
+           res.status(200).render(DireccionPaginas.Recibo_Paso3,datos)
           
         })
           
@@ -271,7 +276,7 @@ static MostrarEstadoRecibo(req,res){
       console.log(llenarPagina);
       Operaciones.ObtenerPostulantesDeUnRecibo(id,(err,a)=>{
         llenarPagina.Postulantes=a;
-        res.render(DireccionPaginas.Recibo_Paso2,llenarPagina)
+        res.status(200).render(DireccionPaginas.Recibo_Paso2,llenarPagina)
 
        })
       
@@ -292,8 +297,9 @@ static notificaciones(req,res){
      Operaciones.consultarNotificaciones(req.session.ide,(rows)=>{
        console.log(req.session);
        console.log(rows);
+       Operaciones.ActualisarNotificacionXUsuario(req.session.ide);
        req.session.config.notificaciones = rows;
-       res.render("Vista/notificaciones",req.session.config);
+       res.status(200).render("Vista/notificaciones",req.session.config);
      })
        
    }
@@ -306,10 +312,9 @@ static notificaciones(req,res){
 static MostrarEstadoPropuesta(req,res){
  let id=req.params.id;
   if(!req.session.ide){
-      res.send("NO esta logeado intentalo de nuevo");
-      res.end();
+      res.redirect("/");  
       return;
-    }
+  }
 
  Operaciones.MostrarEstadoPropuesta(id,req.session.ide,(err,i)=>{
   
@@ -328,7 +333,8 @@ static MostrarEstadoPropuesta(req,res){
         "Sesion":req.session,
         "Perfil":"../"+req.session.config.perfil
     }
-   res.render(DireccionPaginas.Propuesta_Paso2,datos) 
+
+   res.status(200).render(DireccionPaginas.Propuesta_Paso2,datos) 
   }
 
   else if(i.estado_paso_propu==3){
@@ -343,11 +349,14 @@ static MostrarEstadoPropuesta(req,res){
         "Monto":p.monto,
         "CodSum":p.codsum_opc,
         "SI":p.estado_p3p ,//N o C 
-        "IdP":p.id_p3p
+        "IdP":p.id_p3p,
+        "Sesion":req.session,
+        "Perfil":(req.session.config.perfil.indexOf('http://')!=-1)?req.session.config.perfil:"../"+req.session.config.perfil
       }
+
       console.log(p)
       console.log(o);
-      res.render(DireccionPaginas.Propuesta_Paso3,o)
+      res.status(200).render(DireccionPaginas.Propuesta_Paso3,o)
     })
   
   }

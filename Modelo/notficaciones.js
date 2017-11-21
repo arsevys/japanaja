@@ -1,11 +1,5 @@
 var pg=require('pg');
-const config={
-  host:'localhost',
-  user:'postgres',
-  database:'japanaja',
-  port:'5432',
-  password:'andy'
-}
+const config=require("./../configBD.json");
 var pool=new pg.Pool(config);
 
 class notificacion {
@@ -94,14 +88,17 @@ class notificacion {
                    if(err){
                       console.log("Error en la verificacion de tiempo");
                    }
+                   else if(data.rows.length == 0){
+                      done();
+                   }
                    else {
                       
                        data.rows.forEach((x)=>{
 
                           let query1 = "update opciones set estado_opc = 'C' where id_opc = $1";
 
-                        client.query(query1,[x.id_opc],(err2,data2)=>{
-                        });
+                          client.query(query1,[x.id_opc],(err2,data2)=>{
+                          });
 
                            var t = x.fecha_opc.split(' ');
                            var ft = t[0].split('-');
@@ -119,7 +116,12 @@ class notificacion {
 
                             client.query(query4,[x.id_opc],(err3,data3)=>{
 
-                                data3.rows.forEach((x2)=>{
+
+                                if(data3.rows.length == 0){
+                                  done();
+                                }
+                                else {
+                                  data3.rows.forEach((x2)=>{
                                     var t = x.fecha_opc.split(' ');
                                     var ft = t[0].split('-');
                                     var xs = parseInt(ft[2]) + 1; 
@@ -130,7 +132,10 @@ class notificacion {
                                         console.log("Compretado");
 
                                     });
-                                });
+                                   });
+                                }
+
+                                
 
                             });
 
@@ -160,50 +165,63 @@ class notificacion {
                                                 
                 client.query(query,[id],(err,data)=>{
 
-
-                     data.rows.forEach((x)=>{
+                     if(data.rows.length == 0){
+                       done();
+                     }
+                     else{
+                         data.rows.forEach((x)=>{
         
-                        let query1 = "update opciones set estado_opc = 'C' where id_opc = $1";
+                            let query1 = "update opciones set estado_opc = 'C' where id_opc = $1";
 
-                        client.query(query1,[x.idopc],(err2,data2)=>{
-        
-                        });
-
-                         var t = x.ide.split(' ');
-                         var ft = t[0].split('-');
-                         var xs = parseInt(ft[2]) + 1; 
-                         var sr = ft[0]+'-'+ft[1]+'-'+xs+' '+t[1];   
-
-                        var query2 = `insert into notificaciones(id_tn,id_opc,id_usu,fecha_not) values (5,$1,$2,$3) `;
-                        
-                        client.query(query2,[x.idopc,x.usuopc,sr],(err4,data4)=>{
-
-                        });
-                        
-                        
-                        let query3 = 'select * from propuestas where id_opc = $1';
-
-                        client.query(query3,[x.idopc],(err3,data3)=>{  
-
-                            data3.rows.forEach((x2)=>{
-                                var t = x.ide.split(' ');
-                                var ft = t[0].split('-');
-                                var xs = parseInt(ft[2]) + 1; 
-                                var sr = ft[0]+'-'+ft[1]+'-'+xs+' '+t[1];                        
-                                var query4 = `insert into notificaciones(id_tn,id_opc,id_usu,fecha_not) values (6,$1,$2,$3) `;
-
-                                console.log(x2);
-                                console.log("...............");
-                                client.query(query4,[x.idopc,x2.id_usu,sr],(err4,data4)=>{
-
-                                    console.log("Completado");
-
-                                });
+                            client.query(query1,[x.idopc],(err2,data2)=>{
+            
                             });
 
-                        });
+                             var t = x.ide.split(' ');
+                             var ft = t[0].split('-');
+                             var xs = parseInt(ft[2]) + 1; 
+                             var sr = ft[0]+'-'+ft[1]+'-'+xs+' '+t[1];   
 
-                     });
+                            var query2 = `insert into notificaciones(id_tn,id_opc,id_usu,fecha_not) values (5,$1,$2,$3) `;
+                            
+                            client.query(query2,[x.idopc,x.usuopc,sr],(err4,data4)=>{
+
+                            });
+                            
+                            
+                            let query3 = 'select * from propuestas where id_opc = $1';
+
+                            client.query(query3,[x.idopc],(err3,data3)=>{  
+
+                                if(data3.rows.length == 0){
+                                  done();
+                                }
+                                else {
+                                  data3.rows.forEach((x2)=>{
+                                      var t = x.ide.split(' ');
+                                      var ft = t[0].split('-');
+                                      var xs = parseInt(ft[2]) + 1; 
+                                      var sr = ft[0]+'-'+ft[1]+'-'+xs+' '+t[1];                        
+                                      var query4 = `insert into notificaciones(id_tn,id_opc,id_usu,fecha_not) values (6,$1,$2,$3) `;
+
+                                      console.log(x2);
+                                      console.log("...............");
+                                      client.query(query4,[x.idopc,x2.id_usu,sr],(err4,data4)=>{
+
+                                          console.log("Completado");
+
+                                      });
+                                  });
+                                }
+
+                                
+
+                            });
+
+                         });
+
+                     }
+                     
 
                 });
 
@@ -213,7 +231,56 @@ class notificacion {
    }
 
 
+   static confirmadeposito(idopc,idpropu){
+       
+          pool.connect((err,client,done)=>{
+              console.log(idpropu);
+            let query = `select * from propuestas where id_propu = $1`;
+                                                
+                client.query(query,[idpropu],(err,data)=>{
 
+                  console.log(data);
+
+                  if(!err){
+
+                      let query2 = `insert into notificaciones(id_tn,id_opc,id_propu,id_usu) values `+`(8,`+idopc+`,`+idpropu+`,`+data.rows[0].id_usu+`)`;
+
+                     client.query(query2,[],(err2,data2)=>{
+                        console.log("Confirmacion de deposito : " + err2);
+                     });
+
+                  }
+
+
+                })
+
+
+          })
+   }
+
+   static confirmatranzaccion(idopc,idpropu){
+       pool.connect((err,client,done)=>{
+
+            let query = `select * from opciones where id_opc = $1`;
+                                                
+                client.query(query,[idopc],(err,data)=>{
+
+                  if(!err){
+
+                      let query2 = `insert into notificaciones(id_tn,id_opc,id_propu,id_usu) values `+`(7,`+idopc+`,`+idpropu+`,`+data.rows[0].id_usu+`)`;
+
+                     client.query(query2,[],(err2,data2)=>{
+                        console.log("Confirmacion de transaccion : " + err2);
+                     });
+
+                  }
+
+
+                })
+
+
+          })
+   }
 
 }
 

@@ -1,12 +1,6 @@
 var pg= require('pg');
 
-var config={
-    host:'localhost',
-    user:'postgres',
-    database:'japanaja',
-    password:'andy',
-    port:'5432'
-}
+var config=require("./../configBD.json");
 
 var pool=new pg.Pool(config);
 

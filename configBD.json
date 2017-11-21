@@ -1,0 +1,8 @@
+{
+	"host":"ec2-54-235-65-224.compute-1.amazonaws.com",
+	"user":"srmuapzrvupyvz",
+	"database":"dfarad5k2e63m8",
+	"port":"5432",
+	"password":"08a904fdc82c820113ce88a6891bb971b686aa6e54884de90e303f070a1b45b4",
+	"ssl":true
+}

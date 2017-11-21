@@ -2,7 +2,7 @@
 
 var express=require('express');
 var app=express();
-var puerto=process.env.port||3000;
+var puerto=process.env.PORT||3000;
 var bodyParser=require("body-parser");
 var path=require('path');
 var ejs= require('ejs');
@@ -12,6 +12,7 @@ var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var fs=require("fs");
 // var rfs=require('rotating-file-stream');
+var Notificacion=require("./Controlador/Notificacion");
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var Logeo=require('./Controlador/Logeo.js');
@@ -33,7 +34,7 @@ var logdireccion=__dirname;
 passport.use(new Strategy({
     clientID: 809251815920265,
     clientSecret: 'f603b1df391fa3bb696bfe134606bd0d',
-    callbackURL: 'http://localhost:3000/registrar/facebook/return'
+    callbackURL: 'https://aeb40e55.ngrok.io/registrar/facebook/return'
   },
     function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
@@ -43,7 +44,7 @@ passport.use(new Strategy({
 // app.use(morgan('dev'));
 //notLogged -- Logged
 app.use(cookieParser());
-app.use(cors());
+//app.use(cors());
 app.use(session({secret:"disruptia",resave:true,saveUninitialized:true}));
 app.set('view engine','ejs');
 app.set('views',__dirname+"/public");
@@ -147,6 +148,8 @@ app.get('/registrarPropuesta',Secundarios.guardarpropuesta);
 
 //aqui para una consulta de un estado de un recibo publicado
 app.get('/EstadoRecibo/:id',Primario.MostrarEstadoRecibo);
+
+
 /*aqui para una consulta de un estado de un recibo publicado*/
 app.get('/EstadoPropuesta/:id',Primario.MostrarEstadoPropuesta);
 
@@ -170,6 +173,10 @@ app.get("/GeneraTransaccion",OperacionesAdministrador.ConfirmarVoucherGenerarTra
 /*subir imagen del boucher*/
 
 app.post("/SubirImg",multipartMiddleware,Operaciones.SubirImagen);
+
+/*Notificaciones*/
+
+app.post("/Notificaciones",Notificacion.Notificar);
 
 app.listen(puerto,function(){
     console.log("el servidor se esta ejecutando");

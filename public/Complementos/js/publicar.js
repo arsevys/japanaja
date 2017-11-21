@@ -53,6 +53,10 @@ function enviarOpcion(){
 		'type':'POST',
 		 'data':{datos:JSON.stringify(data)},
 		'success':function(data){
+      if(data.datos){
+         location.href ="/MisDatos";
+        return;
+      }
           if(data.err){
           	document.getElementsByClassName('errPO')[0].innerText=data.msj;
           	document.getElementsByClassName('errPO')[0].style.color="red";

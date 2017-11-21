@@ -1,11 +1,8 @@
+
+var notificacion = require('./notficaciones.js');
+
 var pg=require("pg");
-let config={
-	user:"postgres",
-	passwor:"andy",
-	database:"japanaja",
-	host:"localhost",
-	port:"5432"
-}
+let config=require("./../configBD.json");
 
 var pool= new pg.Pool(config);
 pool.on('error', function (err, client) {
@@ -18,7 +15,7 @@ class OperacionesAdministrador {
     x->id de opciones
     i->id Propuestas
     */
-    console.log(x,i);
+
      pool.connect((err,client,done)=>{
       let query= `
        update opciones 
@@ -33,6 +30,7 @@ class OperacionesAdministrador {
       let query2=`
       insert into paso3Propuesta(id_opc,id_propu) values($1,$2)
       `;
+
       client.query(query,[x],(err,data)=>{
       if(err){console.log(err);return;}
       })
@@ -42,6 +40,7 @@ class OperacionesAdministrador {
 
       })
       client.query(query2,[x,i],(err,data)=>{
+        done();
       if(err){console.log(err);return;}
       })
 
@@ -71,12 +70,8 @@ class OperacionesAdministrador {
    })
    client.query(query2,[x],(err,c)=>{
      if(err){console.log(err);return callback(err,false);}
-
+    done();
    })
-
-
-
-
 
   })
 }

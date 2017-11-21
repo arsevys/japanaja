@@ -43,44 +43,64 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/QuieroEfectivo">Quiero efectivo</a></li>
+                        <li><a href="/QuieroAhorrar">Quiero ahorrar</a></li>
+                        <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
+
+
+
+                    <!-- para loger -->
                     <ul class="nav navbar-nav navbar-right">
+
+                       <%# aqui para los no logear%>
+                       <% if(logeado==false){%>
                         <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
-                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro">regístrate</a></li>
+                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro" onclick="limpiarRegistrar()">regístrate</a></li>
+
+                           <% } else {%>
+
+                        <%# aqui para logear%>
+
+                        
                         <li class="dropdown Logged">
-                            <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
-                                <span class="sinleer">88</span>
+                            <a href="#" class="mensajes">mensajes 
+                                <span class="sinleer">58</span>
+                            </a>
+                        </li>
+
+
+
+
+                       <li class="Logged">
+                            <a href="/notificaciones" class="alertas">alertas <span class="sinleer">1</span></a>
+                        </li>
+
+                        <li class="Logged dropdown">
+                            
+                            <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <figure>
+                                    <img src="<%= perfil %>" alt="">
+                                </figure>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Mis propuestas</a></li>
+                                <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
+                                <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
+                                <li><a href="/MisPropuestas">Mis propuestas</a></li>
                                 <li><a href="#">Mis opciones</a></li>
                                 <li><a href="#">Configuración</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Cerrar sesión</a></li>
+                                <li><a href="/signup">Cerrar sesión</a></li>
                             </ul>
-                        </li>
-                        <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                        <li class="Logged dropdown">
-                                    
-                                     <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <figure>
-                                            <img src="<%= perfil %>" alt="">
-                                        </figure>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
-                                            <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
-                                            <li><a href="/MisPropuestas">Mis propuestas</a></li>
-                                            <li><a href="#">Mis opciones</a></li>
-                                            <li><a href="#">Configuración</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="/signup">Cerrar sesión</a></li>
-                                        </ul>
 
-                        </li><!--termina elde perf -->
+                        </li>
+                         <% }%>
+
+
                     </ul>
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>

@@ -36,44 +36,67 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="">Quiero efectivo</a></li>
-                        <li><a href="">Quiero ahorrar</a></li>
-                        <li><a href="#">Nosotros <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/QuieroEfectivo">Quiero efectivo</a></li>
+                        <li><a href="/QuieroAhorrar">Quiero ahorrar</a></li>
+                        <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
+
+
+
+                    <!-- para loger -->
                     <ul class="nav navbar-nav navbar-right">
-                        <%if(!logeado){%>
-                           <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
-                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro">regístrate</a></li>
-                         <%}else{%>
-                             
-                            <li class="dropdown Logged">
-                                <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
-                                    <span class="sinleer">88</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
-                                    <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
-                                    <li><a href="/MisPropuestas">Mis propuestas</a></li>
-                                    <li><a href="#">Mis opciones</a></li>
-                                    <li><a href="#">Configuración</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/signup">Cerrar sesión</a></li>
-                                </ul>
-                            </li>
-                            <li class="Logged"><a href="#" class="alertas">alertas <span class="sinleer">1</span></a></li>
-                            <li class="Logged">
-                                <a href="#" class="usuario">
-                                    <figure>
-                                        <img src="<%= perfil %>" alt="">
-                                    </figure>
-                                </a>
-                            </li>
-                         <%}%>
+
+                       <%# aqui para los no logear%>
+                       <% if(logeado==false){%>
+                        <li class="notLogged"><a href="#" class="iniciar" data-toggle="modal" data-target="#ModalInicioSesion">iniciar sesión</a></li>
+                        <li class="notLogged"><a href="#" class="registrar" data-toggle="modal" data-target="#ModalRegistro" onclick="limpiarRegistrar()">regístrate</a></li>
+
+                           <% } else {%>
+
+                        <%# aqui para logear%>
+
+                        
+                        <li class="dropdown Logged">
+                            <a href="#" class="mensajes">mensajes 
+                                <span class="sinleer">58</span>
+                            </a>
+                        </li>
+
+
+
+
+                       <li class="Logged">
+                            <a href="/notificaciones" class="alertas">alertas <span class="sinleer">1</span></a>
+                        </li>
+
+                        <li class="Logged dropdown">
+                            
+                            <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <figure>
+                                    <img src="<%= perfil %>" alt="">
+                                </figure>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/QuieroAhorrar">Quiero Ahorrar</a></li>
+                                <li><a href="/QuieroEfectivo">Quiero Efectivo</a></li>
+                                <li><a href="/MisPropuestas">Mis propuestas</a></li>
+                                <li><a href="#">Mis opciones</a></li>
+                                <li><a href="#">Configuración</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/signup">Cerrar sesión</a></li>
+                            </ul>
+
+                        </li>
+                         <% }%>
+
+
                     </ul>
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
-         </nav>
+        </nav>
             <section class="main-internal-page cash">
                 <div class="row nopad">
                     <div class="col-sm-12 white-card" id="notificacion">
@@ -172,7 +195,7 @@
 
                                                     var fc = f+'/'+z[1]+' '+w[0]+':'+w[1]+' '+dt;
                                              %>
-                                             <%=fc%> para aceptar tu propuesta.Puedes revisar el avance haciendo <a href="">click aqui</a></p>
+                                             <%=fc%> para aceptar tu propuesta.Puedes revisar el avance haciendo <a href="/EstadoPropuesta/<%=x.id_propu%>">click aqui</a></p>
                                         </div>
                                     <%}%>
 
@@ -232,7 +255,8 @@
                                         </div>
                                         <div class="cuerpo">
                                             <p>Tu recibo de servicio de <%= x.nom_tipo %> por <strong>S/. <%=x.mont_opc%></strong>, recibio una propuesta 
-                                                de <%=x.nomusupro%>.Revisar el estatus haciendo <a href="">click aqui</a></p>
+                                                de <%=x.nomusupro%>.
+                                                Revisar el estatus haciendo <a href="/EstadoRecibo/<%=x.id_opc%>">click aqui</a></p>
                                         </div>
                                     <%}%>
                                     
@@ -307,7 +331,8 @@
 
                                                      }
                                                 %> 
-                                                <%= w[0]+':'+w[1]+' '+dt%>.Revisar el estatus haciendo <a href="">click aqui</a></p>
+                                                <%= w[0]+':'+w[1]+' '+dt%>.
+                                                Revisar el estatus haciendo <a href="/EstadoRecibo/<%=x.id_opc%>">click aqui</a></p>
                                         </div>
                                     <%}%>
 
@@ -362,6 +387,7 @@
                                             <p> Felicitaciones! <%= x.nomusuopc%> aceptó tu propuesta de pago de su recibo de <%= x.nom_tipo%> por <strong>S/. <%=x.mont_opc%></strong>.
                                                 <%= x.nomusuopc%> tiene 2 horas para realizar el deposito de los <strong>S/. <%= x.mont_opc - (x.mont_opc * 0.1) %></strong> a la cuenta 
                                                 de Japanajá. Te notificaremos cuando tengamos el efectivo para depositarlo en tu cuenta siempre y cuando confirme la cancelacion del recibo.
+                                                Revisar el estatus haciendo <a href="/EstadoPropuesta/<%=x.id_propu%>">click aqui</a>
                                                 </p>
                                         </div>
                                     <%}%>
@@ -467,6 +493,112 @@
                                         <div class="cuerpo">
                                             <p> Lo sentimos , no hemos tenido respuesta alguna de <%=x.nomusuopc%> acerca del recibo de <%= x.nom_tipo%> por <%= x.mont_opc%> y se vencio el tiempo limite 
                                              para seleccionar una propuesta .
+                                            </p>
+                                        </div>
+                                    <%}%>
+
+
+                                    <%if(x.id_tn == 7){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu recibo de <%=x.nom_tipo%> por S/. <%=x.mont_opc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p> Felicitacines! Ahorraste S/ <%= x.mont_opc - (x.mont_opc * 0.1)%> en esta transacción con <%=x.nomusupro%>.
+                                            </p>
+                                        </div>
+                                    <%}%>
+
+
+                                    <%if(x.id_tn == 8){%>
+                                         <div class="cabezera">
+                                            <div>
+                                                <h3>Tu propuesta sobre el recibo de <%=x.nomusuopc%></h3>
+                                            </div>
+                                            <div>
+                                                <%if(x.dias == 1){%>
+                                                   <p>Ayer</p>
+                                                <%}
+                                                else if(x.dias == 0) {
+                                                     var y = x.hora;
+                                                      if(!y.minutes){%>
+                                                       <p>Hace <%=y.seconds%> segundos</p>
+                                                     <% }
+                                                      else if(!y.hours){%>
+                                                        <p>Hace <%=y.minutes%> minutos</p>
+                                                      <%}
+                                                      else {
+                                                         if(y.hours == 1){%>
+                                                             <p>Hace <%='1'%> hora</p>
+                                                        <% }
+                                                         else{%>
+                                                              <p>Hace <%=y.hours%> horas</p>
+                                                        <% }
+                                                      }%>
+                                               <% }
+                                                else{
+                                                    var y = x.fecha_not.split(' ');
+                                                    var w = y[1].split(':');
+                                                    var z = y[0].split('-');
+                                                    var dt = parseInt(w[0]);
+                                                     if(dt >= 12){
+                                                       
+                                                         w[0] = dt -12 ;               
+                                                          dt = 'pm';     
+                                                   }
+                                                     else {
+
+                                                        dt = 'am';
+
+   
+                                                     }%>
+                                                     <p>El <%=z[2]+'/'+z[1]%> a las <%=w[0]+':'+w[1]+' '+dt%></p>
+                                                <%}%> 
+                                            </div>
+                                        </div>
+                                        <div class="cuerpo">
+                                            <p> Ya Tenemos tus <strong>S/. <%=x.mont_opc - (x.mont_opc * 0.1)%></strong> en las cuentas de Japanaja.Por favor <a href="/EstadoPropuesta/<%=x.id_propu%>">haz click aqui</a> para que realices el pago del recibo de <%= x.nomusuopc%>.
                                             </p>
                                         </div>
                                     <%}%>

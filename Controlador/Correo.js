@@ -1,12 +1,12 @@
 const email=require("nodemailer");
 var OperacionCorreo=require("./../Modelo/Correo.js")
-const serv="https://d02f2172.ngrok.io"
+const serv="https://aeb40e55.ngrok.io"
 const config={
 service :"Gmail",
 secure:true,
 auth:{
-	user:"disruptiabot@gmail.com",
-	pass:"nodejs1997"
+	user:"bot@gmail.com",
+	pass:"------"
 }
 }
 const administrador="andyrobersjavierreyes@gmail.com";
@@ -53,7 +53,7 @@ static EnviarConfirmacionAdministrador(x){
      Monto a depositar :<span style="color:green"> ${parseFloat(i[0].monto).toFixed(2)}</span><br>
      Numero De Operacion : <span style="color:purple">${i[0].numope}</span><br>
      Link para confirmar correctamente el numero de Operacion:
-     <a href="http://localhost:3000/AdminConfirmarDepositoRecibo?opc=${i[0].id_opc}&propu=${i[0].id_propu}" target="_blank">Click para confirmar</a>
+     <a href="${serv}/AdminConfirmarDepositoRecibo?opc=${i[0].id_opc}&propu=${i[0].id_propu}" target="_blank">Click para confirmar</a>
 	</p>
 	</div>`
      };
@@ -84,7 +84,7 @@ static RevisarVoucher(x){
      <center>
      <img src='${serv}/Complementos/Depositos/${i.foto_p3p}' width='250' height='320'>
      </center>
-     <a href="http://localhost:3000/GeneraTransaccion?opc=${i.id_opc}&propu=${i.id_propu}&p3p=${i.id_p3p}" target="_blank">Click para confirmar</a>
+     <a href="${serv}/GeneraTransaccion?opc=${i.id_opc}&propu=${i.id_propu}&p3p=${i.id_p3p}" target="_blank">Click para confirmar</a>
 	</p>
 	</div>`
      };

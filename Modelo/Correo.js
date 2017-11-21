@@ -1,11 +1,6 @@
 var pg=require('pg');
-const config={
-	host:'localhost',
-	user:'postgres',
-	database:'japanaja',
-	port:'5432',
-	password:'andy'
-}
+
+var config=require("./../configBD.json");
 var pool=new pg.Pool(config);
 
 
@@ -26,9 +21,8 @@ static CargarDatosUsuario(x,callback){
 	on t.id_tipo=o.id_tipo
 	where p3.id_p3r=$1
 
-
-
          `;
+         done();
       client.query(query,[x],(err,data)=>{
        if(err){console.log(err);return;}
        done();
@@ -64,6 +58,7 @@ where p3.id_p3r=$1 and p3.estado_p3r='C'
 }
 
 static CargarDatosVoucherPropuesta(x,callback){
+  console.log("ID P3p",x);
 	 pool.connect(function(err,client,done){
          let query=`
     
@@ -78,7 +73,7 @@ inner join tipos t
 on t.id_tipo=o.id_tipo
 inner join usuarios u
 on u.id_usu=o.id_usu
-where p3p.id_p3p=$1 or p3p.estado_p3p='C'
+where p3p.id_p3p=$1 
          `;
       client.query(query,[x],(err,data)=>{
        if(err){console.log(err);return;}

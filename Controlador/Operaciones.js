@@ -35,16 +35,28 @@ static PublicarOpcion(req,res){
       res.send({err:true,msj:"Monto no Valido"});
       return;
      }
-       let ide=req.session.ide;
+       let ide=req.session.ide;  
 
+       Operacion.ValidarPublicarReciboSiTieneMisDatos(ide,(e,de)=>{
+        console.log(456,de);
+        if(de.length>=1){
+          res.send({datos:true,err:true,msj:"Necesita completar sus datos <a href='/MisDatos'>Click</a>"});return;
+        }
+        else {
+            
        Operacion.InsertarOpciones(ide,d,(err,id)=>
        {
 
         notificacion.realizarPublicacion(id,ide);
-       	if(err){res.send({err:true,msj:"Hubo Problemas intente mas tarde"});return;};
+        if(err){res.send({err:true,msj:"Hubo Problemas intente mas tarde"});return;};
         res.send({err:false,msj:"Su Publicacion se realizo correctamente"});
 
        })
+
+        }
+       })
+
+
 
 
 
@@ -64,7 +76,7 @@ static GuardarDatos(req,res){
   console.log(req.body);
   let i=req.body;
   let correo=/^\S+\@\w+\.\w+$/;//correo
-  let nombre=/^\w+$/;
+  let nombre=/^\D+$/;
   let dni=/^\d{8}$/;
   let cuentainter=/^\d{10}$/;
   let cuenta=/^\d{12}$/;
@@ -93,29 +105,32 @@ static GuardarDatos(req,res){
     return;
    }
 
-   else if(!cuenta.test(i.cuenta)){
-    reporte.data="Error en la casilla de Nombre";
-    res.send(reporte);
-    return;
-   }
-   else if(!cuentainter.test(i.interbana)){
-    reporte.data="Error en la casilla de Apellidos";
-    res.send(reporte);
-    return;
-   }
-   else if(!dni.test(i.dni)){
-    reporte.data="Error en la casilla de DNI";
-    res.send(reporte);
-    return;
-   }
+   // else if(!cuenta.test(i.cuenta)){
+   //  reporte.data="Error en la casilla de Cuenta";
+   //  res.send(reporte);
+   //  return;
+   // }
+   // else if(!cuentainter.test(i.interbana)){
+   //  reporte.data="Error en la casilla de Cuenta Interbancaria";
+   //  res.send(reporte);
+   //  return;
+   // }
+   // else if(!dni.test(i.dni)){
+   //  reporte.data="Error en la casilla de DNI";
+   //  res.send(reporte);
+   //  return;
+   // }
 
 
 
 
-  res.send(reporte);
-  // Operacion.actualisarDatos(req.body,(e,d)=>{
+  // res.send(reporte);
+  Operacion.actualisarDatos(req.body,(e,d)=>{
 
-  // })
+   if(e){console.log(e);return;}
+    res.status(200).send({r:true,err:true,data:"Actualizado Correctamente"});
+ 
+  })
 
 }
 static ActualisarPaso2A3Recibos(req,res){

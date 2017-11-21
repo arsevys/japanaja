@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><%= name%></title>
+     <title><%=name%></title>
     <meta name="title" content="Titulo de la página: entre 55 caracteres">
     <meta name="description" content="La descripción: entre 155 caracteres">
     <meta name="keywords" content="Keywords: entre 5 palabras o frases clave">
@@ -43,8 +42,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse mainNav" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="">Quiero efectivo</a></li>
-                        <li><a href="">Quiero ahorrar</a></li>
+                        <li><a href="/QuieroEfectivo">Quiero efectivo</a></li>
+                        <li><a href="/QuieroAhorrar">Quiero ahorrar</a></li>
                         <li><a href="/Nosotros">Nosotros <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Ayuda</a></li>
                     </ul>
@@ -65,36 +64,21 @@
 
                         
                         <li class="dropdown Logged">
-                            <a href="#" class="dropdown-toggle mensajes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mensajes 
+                            <a href="#" class="mensajes">mensajes 
                                 <span class="sinleer">58</span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
                         </li>
 
 
 
 
-         <li class="Logged">
-                            <a href="#" class="dropdown-toggle alertas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">alertas <span class="sinleer">1</span></a>
-                            <ul class="dropdown-menu">
-                                <li>ds</li>
-                                <li>ds</li>
-                                <li>sd</li>
-                                <li>ds</li>
-                                <li></li>
-                            </ul>
-
+                       <li class="Logged">
+                            <a href="/notificaciones" class="alertas">alertas <span class='sinleer alert'></span> </a>
                         </li>
 
                         <li class="Logged dropdown">
                             
-                             <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle usuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <figure>
                                     <img src="<%= perfil %>" alt="">
                                 </figure>
@@ -384,4 +368,6 @@
     </script>
   </body>
   <script type="text/javascript" src="Complementos/js/logre.js"></script>
+
+  <!-- <script type="text/javascript" src="Complementos/js/notificacion.js"></script> -->
 </html>

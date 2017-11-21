@@ -54,7 +54,7 @@ create table cuentas (
 
 insert into cuentas (id_usu,num_cuenta,id_banco) values(19,'1234-1234-123',1);
 insert into cuentas (id_usu,num_cuenta,id_banco) values(32,'1234-1234-123',1);
-insert into cuentas (id_usu,num_cuenta,id_banco) values(19,'1234-1234-123',1);
+insert into cuentas (id_usu,num_cuenta,id_banco) values(115,'1234-1234-123',1);
 
 select * from cuentas;
 --Aqui para rellenar los combobox delos diferentes servicios 
@@ -63,7 +63,7 @@ create table tipos (
     tipo_tipo varchar(250) not null,-- ejemplo Servicio de agua ,Servicio de Luz
     nom_tipo varchar(100) not null -- ejemplo de nombre de cada servicio ejm : enel,luz del sur, sedapal
 );
-select * from tipos
+select * from bancos
 
 create table opciones (
     id_opc serial primary key,
@@ -155,6 +155,7 @@ create table notificaciones (
 
 insert into notificaciones()
 
+select * from notificaciones;
 
 insert into usuarios (nom_usu,id_face_usu,estre_usu)
 values ('javier','12232434',100);
@@ -499,9 +500,21 @@ select * from propuestas;
 select * from opciones;
 create function confirmarCorreo()
 
+select * from usuarios;--65
 
 
-
+select p3p.id_propu, p3p.id_p3p,o.id_opc,u.nom_usu,o.mont_opc
+,t.nom_tipo,t.tipo_tipo,p3p.foto_p3p,
+(select us.nom_usu from usuarios us  
+inner join propuestas pe on pe.id_usu=us.id_usu where pe.id_propu=p3p.id_propu) as nom
+from paso3Propuesta p3p
+inner join opciones o
+on o.id_opc=p3p.id_opc
+inner join tipos t
+on t.id_tipo=o.id_tipo
+inner join usuarios u
+on u.id_usu=o.id_usu
+where p3p.id_p3p=10 or p3p.estado_p3p='C'
 
 
 
@@ -509,6 +522,50 @@ update paso3Propuesta set
  estado_p3p='N'
    where id_p3p=1
 
+select * from bancos
+select * from cuentas
+select * from notificaciones;
+select * from tipoxnotificacion ;
+
+drop table notificaciones;
+create table notificaciones(
+id_not serial primary key ,
+id_tn int references tipoxnotificacion(id_tn),
+id_opc int references opciones(id_opc),
+id_propu int references propuestas(id_propu),
+id_trans int references transacciones(id_trans),
+est_not char(1) default 'N' ,
+id_usu int references usuarios(id_usu),
+fecha_not text default to_char((timezone('UTC'::text, now()) - '5:00:00'::interval),'YYYY-MM-DD HH24:MI:SS'),
+unique(id_tn,id_opc,id_usu)
+);
+
+select count(*) as contador from notificaciones n
+where id_usu=19 and est_not='N';
+
+
+update notificaciones 
+set est_not='N'
+where id_usu=19;
+
+select * from notificaciones ;
+
+select * from usuarios ;
+select * from usuarios where id_usu =1 and dni_usu is null and cel_usu is null and correo_usu is null;
+
+
+
+select u.nom_usu,to_char('24 hour' - ( now() at time zone 'UTC' - interval '5 hour' - opc.fecha_opc::timestamp ),'HH24:MI:SS') as hora,opc.fecha_opc,
+      to_char(opc.fecha_opc::timestamp  + '24 hour' ,'dd-mm-yyyy') || ' del ' || to_char(opc.fecha_opc::timestamp + '24 hour','HH:MI AM') as fecha
+      , case
+      when '24 hour' -(now() at time zone 'UTC' - interval '5 hour' - opc.fecha_opc::timestamp) > -interval '-00:00:00' then 'NV'
+      else 'V'
+      end as Vencio, p.estado_paso_propu,p.estado_propu from 
+      propuestas p
+      inner join opciones as opc 
+      on p.id_opc=opc.id_opc
+      inner join usuarios as u
+      on u.id_usu=opc.id_usu
 
 
 
@@ -519,3 +576,36 @@ update paso3Propuesta set
 
 
 
+
+  select * from notificaciones     
+
+
+
+
+
+
+select *,o.id_opc as idopc ,o.id_usu as usuopc,
+p.id_usu as usupro ,o.fecha_opc as ide 
+from propuestas as p 
+inner join opciones as o 
+on p.id_opc = o.id_opc 
+where p.id_usu = 115  
+and o.estado_opc = 'A' 
+and o.fecha_opc  < to_char((timezone('UTC'::text, now()) - '29:00:00'::interval),'YYYY-MM-DD HH24:MI:SS');
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

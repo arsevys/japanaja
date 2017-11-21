@@ -20,8 +20,14 @@ function mantenimiento(){
 		type:"POST",
 		data:dato,
 		success:function(e){
+			console.log(e);
 			if(e.err){
-           $(".result"),text(e.data);
+           $("#result").text(e.data);
+           if(e.r){
+           	setTimeout(function(){
+           		location.href="/Misdatos";
+           	},1500);
+           }
          console.log(e);
 			}
 		}
